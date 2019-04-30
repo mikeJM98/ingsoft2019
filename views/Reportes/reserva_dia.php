@@ -48,12 +48,7 @@
 			    	</section>
 			</div>
 
-		  	<footer class="main-footer">
-			    	<div class="pull-right hidden-xs">
-			      	<b>CURSO: </b> SOFTWARE II - FISI - UNSM
-			    	</div>
-		    		<strong>Copyright &copy; Verano 2017</strong>
-		  	</footer>
+			<?php include("../views/layout/footer.php"); ?>
 		</div>
 
 		<?php include("../views/layout/js.php"); ?>

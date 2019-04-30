@@ -1,7 +1,7 @@
 <?php
 	require_once 'Conexion.php';
 	session_start();
-	class Login{
+	class Login{ 
 	    	private static $instancia;
 	    	private $dbh;
 	 
@@ -19,7 +19,7 @@
 		
 		public function Login_usuario($usuario,$clave){	
 			try {				
-				$sql = "select *from empleado where e_usuario = ? and e_clave = ?";
+				$sql = "select * from empleado where e_usuario = ? and e_clave = ?";
 				$query = $this->dbh->prepare($sql);
 				$query->bindParam(1,$usuario); $query->bindParam(2,$clave);
 				$query->execute(); $this->dbh = null;

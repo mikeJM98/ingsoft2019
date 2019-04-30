@@ -16,12 +16,7 @@
 			    	</section>
 			</div>
 
-		  	<footer class="main-footer">
-			    	<div class="pull-right hidden-xs">
-			      	<b>CURSO: </b> SOFTWARE II - #quieroaprobar
-			    	</div>
-		    		<strong>CMJR &copy; 2019-I</strong>
-		  	</footer>
+			<?php include("layout/footer.php"); ?>
 		</div>
 
 		<?php include("layout/js.php"); ?>
