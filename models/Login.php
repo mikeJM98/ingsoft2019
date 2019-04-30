@@ -1,5 +1,5 @@
 <?php
-	require_once 'Conexion.php';
+	require_once 'Conexion.php'; 
 	session_start();
 	class Login{ 
 	    	private static $instancia;

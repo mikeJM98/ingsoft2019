@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
 	</head>
 	<body class="hold-transition login-page">
-		<div class="login-box">
+		<div class="login-box"> 
 		  	<div class="login-logo"> 
 		    		<a><b>POSADA</b>FLOR DEL VALLE</a>
 		  	</div>

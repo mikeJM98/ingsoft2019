@@ -2,7 +2,7 @@
 	require_once ('../models/login.php');
 	$var = Login::Conectandome();
  	
-	if(isset($_POST['usuario'])){
+	if(isset($_POST['usuario'])){ 
 		$usuario= $_POST['usuario'];
 		$password = $_POST['clave'];
 

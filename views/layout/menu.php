@@ -89,6 +89,20 @@
 		            	<li><a href="reporte.php?accion=2"><i class="fa fa-circle-o"></i> Entrada por dia</a></li>
 		          	</ul>
 	        	</li>
+	        	<li class="treeview">
+		          	<a href="#">
+		            	<i class="fa fa-print"></i> <span>Usuarios</span>
+		            	<span class="pull-right-container">
+		              		<i class="fa fa-angle-left pull-right"></i>
+		            	</span>
+		          	</a>
+		          	<ul class="treeview-menu">
+		            	<li><a href="empleados.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+		            	<li><a href="modulos.php"><i class="fa fa-circle-o"></i> Modulos</a></li>
+		            	<li><a href="tipo_empleado.php"><i class="fa fa-circle-o"></i> Tipo usuario</a></li>
+		            	<li><a href="permisos.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
+		          	</ul>
+	        	</li>
 	        	<li class="header">OTRAS OPCIONES</li>
 	        	<li><a href="../index.php"><i class="fa fa-circle-o text-red"></i> 
 	        		<span>CERRAR SESION</span></a>

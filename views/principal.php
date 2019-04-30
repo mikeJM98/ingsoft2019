@@ -10,7 +10,7 @@
 			    	<section class="content">
 			      	<div class="row">
 			        		<div class="col-xs-12"> <br><br><br><br>
-			          			<center><img src="../public/img/fondo.png"></center>
+			          			<center><img src="../public/dist/img/logo.jpg"></center>
 			        		</div>
 			      	</div>
 			    	</section>
