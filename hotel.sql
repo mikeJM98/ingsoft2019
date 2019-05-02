@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2019 a las 19:04:36
+-- Tiempo de generación: 02-05-2019 a las 04:54:22
 -- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Versión de PHP: 7.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -178,16 +178,18 @@ CREATE TABLE `empleado` (
   `e_sexo` varchar(15) DEFAULT NULL,
   `e_fechareg` date DEFAULT NULL,
   `e_tipoempleado` int(11) NOT NULL,
-  `e_estado` int(11) DEFAULT '1'
+  `e_estado` int(11) DEFAULT '1',
+  `e_bloqueado` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`e_id`, `e_dni`, `e_nombres`, `e_apellidos`, `e_direccion`, `e_usuario`, `e_clave`, `e_celular`, `e_sexo`, `e_fechareg`, `e_tipoempleado`, `e_estado`) VALUES
-(1, '93589585', 'JUAN', 'ALVARADO', 'TARAPOTO', 'juan', '123', '3894984848', 'MASCULINO', '2017-02-07', 1, 0),
-(2, '70989910', 'Christian Manue', 'Juárez Rivero', 'jr. cesar david 126', 'CMJR', '123', '956908983', 'MASCULINO', '2019-04-28', 2, 1);
+INSERT INTO `empleado` (`e_id`, `e_dni`, `e_nombres`, `e_apellidos`, `e_direccion`, `e_usuario`, `e_clave`, `e_celular`, `e_sexo`, `e_fechareg`, `e_tipoempleado`, `e_estado`, `e_bloqueado`) VALUES
+(1, '93589585', 'JUAN', 'ALVARADO', 'TARAPOTO', 'juan', '123', '3894984848', 'MASCULINO', '2017-02-07', 1, 0, b'0'),
+(2, '70989910', 'Christian Manue', 'Juárez Rivero', 'jr. cesar david 126', 'CMJR', '123', '956908983', 'MASCULINO', '2019-04-28', 2, 1, b'1'),
+(3, '49789796', 'sokal', 'sdsdsd', 'jt libre', 'm', 'm', '4956568984', 'MASCULINO', '2019-05-02', 1, 1, b'0');
 
 -- --------------------------------------------------------
 
@@ -252,6 +254,17 @@ INSERT INTO `entrada` (`e_id`, `e_huesped`, `e_empleado`, `e_habitacion`, `e_ciu
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `fail_sesion`
+--
+
+CREATE TABLE `fail_sesion` (
+  `u_id` int(11) NOT NULL,
+  `intentos` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `habitacion`
 --
 
@@ -309,6 +322,30 @@ INSERT INTO `huesped` (`h_id`, `h_tipodocumento`, `h_documento`, `h_nacionalidad
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `modulos`
+--
+
+CREATE TABLE `modulos` (
+  `m_id` int(11) NOT NULL,
+  `m_descripcion` varchar(20) NOT NULL,
+  `m_estado` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `modulos`
+--
+
+INSERT INTO `modulos` (`m_id`, `m_descripcion`, `m_estado`) VALUES
+(1, 'usuarios', b'1'),
+(2, 'mantenimiento', b'1'),
+(3, 'barredor', b'1'),
+(4, 'habitaciones', b'1'),
+(5, 'ds', b'0'),
+(6, 'mike', b'1');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pais`
 --
 
@@ -330,7 +367,28 @@ INSERT INTO `pais` (`p_id`, `p_descripcion`, `p_estado`) VALUES
 (5, 'COLOMBIA', 0),
 (6, 'ECUADOR', 0),
 (7, 'PORTUGAL', 0),
-(8, 'Perú', 1);
+(8, 'Perú', 1),
+(9, 'l', 1),
+(10, 'mjkl', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `m_id` int(11) NOT NULL,
+  `m_tipo_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`m_id`, `m_tipo_usuario`) VALUES
+(2, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -598,10 +656,23 @@ ALTER TABLE `huesped`
   ADD KEY `tipodoc_fk` (`h_tipodocumento`);
 
 --
+-- Indices de la tabla `modulos`
+--
+ALTER TABLE `modulos`
+  ADD PRIMARY KEY (`m_id`);
+
+--
 -- Indices de la tabla `pais`
 --
 ALTER TABLE `pais`
   ADD PRIMARY KEY (`p_id`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD KEY `permisos_tipo_usuario` (`m_tipo_usuario`),
+  ADD KEY `permiso_modulos` (`m_id`);
 
 --
 -- Indices de la tabla `producto`
@@ -686,7 +757,7 @@ ALTER TABLE `consumo`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `enseres`
@@ -713,10 +784,16 @@ ALTER TABLE `huesped`
   MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT de la tabla `modulos`
+--
+ALTER TABLE `modulos`
+  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -843,6 +920,13 @@ ALTER TABLE `habitacion`
 --
 ALTER TABLE `huesped`
   ADD CONSTRAINT `tipodoc_fk` FOREIGN KEY (`h_tipodocumento`) REFERENCES `tipo_documento` (`td_id`);
+
+--
+-- Filtros para la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD CONSTRAINT `permiso_modulos` FOREIGN KEY (`m_id`) REFERENCES `modulos` (`m_id`),
+  ADD CONSTRAINT `permisos_tipo_usuario` FOREIGN KEY (`m_tipo_usuario`) REFERENCES `tipo_empleado` (`te_id`);
 
 --
 -- Filtros para la tabla `producto`
