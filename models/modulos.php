@@ -17,7 +17,7 @@
 		
 		public function listar(){	
 			try {	
-				$sql = "select *from empleado where e_estado=1";
+				$sql = "select *from modulos";
 				$query = $this->dbh->prepare($sql);
 				$query->execute(); $this->dbh = null;
 
@@ -25,7 +25,7 @@
 					while( $datos = $query->fetch()){
 	    				$info[]=$datos;	
 	    			}
-				return $info;		
+				return $info;		 
 			}catch(PDOException $e){
 				print "Error!: " . $e->getMessage();	
 			}				
@@ -47,32 +47,8 @@
 		}
 		public function guardar(){	
 			try {	
-				if($_POST["id"]==""){
-					$sql = "insert into empleado(e_tipoempleado,e_dni,e_nombres,e_apellidos,e_direccion,e_usuario,e_clave,e_celular,e_sexo,e_fechareg) values(
-						'".$_POST["tipo_empleado"]."',
-						'".$_POST["dni"]."',
-						'".$_POST["nombres"]."',
-						'".$_POST["apellidos"]."',
-						'".$_POST["direccion"]."',
-						'".$_POST["usuario"]."',
-						'".$_POST["clave"]."',
-						'".$_POST["celular"]."',
-						'".$_POST["sexo"]."',
-						'".date('Y-m-d')."'
-					)";
-				}else{
-					$sql = "update empleado set 
-						e_tipoempleado='".$_POST["tipo_empleado"]."',
-						e_dni='".$_POST["dni"]."',
-						e_nombres='".$_POST["nombres"]."',
-						e_apellidos='".$_POST["apellidos"]."',
-						e_direccion='".$_POST["direccion"]."',
-						e_usuario='".$_POST["usuario"]."',
-						e_clave='".$_POST["clave"]."',
-						e_sexo='".$_POST["sexo"]."',
-						e_celular='".$_POST["celular"]."'
-					where e_id=".$_POST["id"];
-				}
+				$sql = "INSERT INTO `modulos` (`m_id`, `m_descripcion`, `m_estado`) VALUES (3,'." $_POST['descripcion'].", 1)";
+				echo "$sql";
 				$query = $this->dbh->prepare($sql);
 				$query->execute(); $this->dbh = null; return 1;
 			}catch(PDOException $e){

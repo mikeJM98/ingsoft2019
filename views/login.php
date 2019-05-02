@@ -5,8 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>POSADA FLOR DEL VALLE</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../public/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../public/dist/css/AdminLTE.min.css">
 	</head>
 	<body class="hold-transition login-page">
 		<div class="login-box"> 
@@ -15,8 +15,7 @@
 		  	</div>
 		  	<div class="login-box-body">
 		    		<p class="login-box-msg">Ingresa Usuario y Clave</p>
-
-			    	<form action="controllers/login.php" method="POST">
+			    	<form action="index.php" method="POST">
 				     	<div class="form-group has-feedback">
 				        	<input type="text" class="form-control" name="usuario" placeholder="Nombre usuario">
 				        	<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -25,19 +24,36 @@
 				        	<input type="password" class="form-control" name="clave" placeholder="Clave usuario">
 				        	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				     	</div>
-					<div class="row">
-					     	<div class="col-xs-12">
-					       	<button type="submit" class="btn btn-success btn-block btn-flat">Acceder</button>
-					     	</div>
-			      	</div>
+						<div class="row">
+						     	<div class="col-xs-12">
+						       	<button type="submit" class="btn btn-success btn-block btn-flat">Acceder</button>
+						     	</div>
+				      	</div>
+				      	<?php if ($_SESSION['intentos']==0) { ?>
+				      	<center>
+					      	<div class="row">
+							     	<div class="col-xs-12">
+							       	<h3 class="p-3 mb-2 bg-danger text-white"><?php echo $error[0];?></h3>
+							     	</div>
+					      	</div>
+					     </center>
+				      	<?php }elseif ($temp==true) { ?>
+				      	<center>
+					      	<div class="row">
+							     	<div class="col-xs-12">
+							       	<h3 class="p-3 mb-2 bg-warning text-dark"><?php echo $error[1] . '<br>' . $error[2]; ?></h3>
+							     	</div>
+					      	</div>
+					     </center>
+			      		<?php } ?>
 			    	</form>
  
-		    		<center> <br><br>
+		    		<center>
 		    			<a href="#">SOFWARE DE HOTEL</a> Curso: Software II - FISI<br>
 		    		</center>
 		  	</div>
 		</div>
-		<script src="public/plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="public/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../public/plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="../public/bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

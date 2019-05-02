@@ -1,5 +1,5 @@
 <button class="btn btn-success" onclick="nuevo()" style="z-index:2; position: absolute;margin-top:-5px !important;">
-	<i class="fa fa-plus-square"></i> Nuevo empleado
+	<i class="fa fa-plus-square"></i> Nuevo usuario
 </button>
 <table class="table table-bordered data-table table-data">
 	<thead>

@@ -15,7 +15,7 @@
 					              		<h3 class="box-title" id="titulo"></h3>
 					              		<div class="box-tools pull-right" id="alerta">
 					                			<div class="alert alert-danger alerta">
-								                	<b>CREACION USUARIOS:</b> 
+								                	<b>ATENCION USUARIO:</b> 
 								                	<b id="alerta_text"></b>
 								           	</div>
 					              		</div>
@@ -49,12 +49,12 @@
 		<?php include("../views/layout/js.php"); ?>
 
 		<script type="text/javascript">
-       		var modulo="SERVICIOS"; 
-       		var submodulo = "usuariodo"; 
-       		var tabla = "usuariodo";
-                	var campos = ["e_id", "e_nombres", "e_tipousuariodo"];
-                	var form = ["id","nombres","tipo"];
+       		var modulo="MAESTRAS"; 
+       		var submodulo = "modulos"; 
+       		var tabla = "modulos";
+                	var campos = ["m_id", "m_descripcion"];
+                	var form = ["id","descripcion"];
        	</script>
-       	<script src="../public/app/empleado.js"></script>
+       	<script src="../public/app/mantenimiento.js"></script>
 	</body>
 </html>

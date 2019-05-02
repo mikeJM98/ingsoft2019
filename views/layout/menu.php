@@ -33,12 +33,12 @@
 		            	<li><a href="#entrada.php"><i class="fa fa-circle-o"></i> Entradas</a></li>
 		            	<li><a href="#reserva.php"><i class="fa fa-circle-o"></i> Reservas</a></li>
 		            	<li><a href="#huesped.php"><i class="fa fa-circle-o"></i> Huesped</a></li>
-		            	<!--<li><a href="cliente.php"><i class="fa fa-circle-o"></i> Cliente</a></li>-->
+		            	<!--<li><a href="#cliente.php"><i class="fa fa-circle-o"></i> Cliente</a></li>-->
 		          	</ul>
 	        	</li>
 	        	<li class="treeview HABITACION">
 		          	<a href="#">
-		            	<i class="fa fa-home"></i> <span>HABITACIONES</span>
+		            	<i class="fa fa-home"></i> <span>Habitaciones</span>
 		            	<span class="pull-right-container">
 		              		<i class="fa fa-angle-left pull-right"></i>
 		            	</span>
@@ -48,35 +48,7 @@
 		            	<li><a href="#tipo_habitacion.php"><i class="fa fa-circle-o"></i> Tipo habitacion</a></li>
 		          	</ul>
 	        	</li>
-	        	<li class="treeview SERVICIOS">
-		          	<a href="#">
-		            	<i class="fa fa-houzz"></i> <span>SERVICIOS</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu" id="SERVICIOS">
-		            	<li><a href="#producto.php"><i class="fa fa-circle-o"></i> Productos</a></li>
-		            	<li><a href="#categorias.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
-		            	<li><a href="#empleados.php"><i class="fa fa-circle-o"></i> Empleados</a></li>
-		          	</ul>
-	        	</li>
-	        	<li class="treeview MUESTRAS">
-		          	<a href="#">
-		            	<i class="fa fa-book"></i> <span>MUESTRAS</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu" id="MAESTRAS">
-		            	<li><a href="#tipo_cliente.php"><i class="fa fa-circle-o"></i> Tipo cliente</a></li>
-		            	<li><a href="#tipo_documento.php"><i class="fa fa-circle-o"></i> Tipo documento</a></li>
-		            	<li><a href="#ciudad.php"><i class="fa fa-circle-o"></i> Ciudad</a></li>
-		            	<li><a href="#pais.php"><i class="fa fa-circle-o"></i> Pais</a></li>
-		            	<li><a href="#tipo_servicio.php"><i class="fa fa-circle-o"></i> Tipo servicio</a></li>
-		            	<li><a href="#tipo_empleado.php"><i class="fa fa-circle-o"></i> Tipo empleado</a></li>
-		          	</ul>
-	        	</li>
+	        
 	        	<li class="treeview">
 		          	<a href="#">
 		            	<i class="fa fa-print"></i> <span>REPORTES</span>
@@ -91,6 +63,24 @@
 	        	</li>
 	        	<li class="treeview">
 		          	<a href="#">
+		            	<i class="fa fa-print"></i><span>Mantenimiento</span>
+		            	<span class="pull-right-container">
+		              		<i class="fa fa-angle-left pull-right"></i>
+		            	</span>
+		          	</a>
+		          	<ul class="treeview-menu">
+		          		<li><a href="#tipo_documento.php"><i class="fa fa-circle-o"></i> Tipo documento</a></li>
+		          		<li><a href="#producto.php"><i class="fa fa-circle-o"></i> Producto</a></li>
+		            	<li><a href="#categorias.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
+		            	
+		            	<li><a href="#ciudad.php"><i class="fa fa-circle-o"></i> Ciudad</a></li>
+		            	<li><a href="#pais.php"><i class="fa fa-circle-o"></i> Pais</a></li>
+		            	<li><a href="#tipo_cliente.php"><i class="fa fa-circle-o"></i> Tipo cliente</a></li>
+		            	<li><a href="#tipo_servicio.php"><i class="fa fa-circle-o"></i> Tipo servicio</a></li>
+		          	</ul>
+	        	</li>
+	        	<li class="treeview">
+		          	<a href="#">
 		            	<i class="fa fa-print"></i> <span>Usuarios</span>
 		            	<span class="pull-right-container">
 		              		<i class="fa fa-angle-left pull-right"></i>
@@ -100,11 +90,11 @@
 		            	<li><a href="empleados.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
 		            	<li><a href="modulos.php"><i class="fa fa-circle-o"></i> Modulos</a></li>
 		            	<li><a href="tipo_empleado.php"><i class="fa fa-circle-o"></i> Tipo usuario</a></li>
-		            	<li><a href="permisos.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
+		            	<!--li><a href="permisos.php"><i class="fa fa-circle-o"></i> Permisos</a></li-->
 		          	</ul>
 	        	</li>
 	        	<li class="header">OTRAS OPCIONES</li>
-	        	<li><a href="../index.php"><i class="fa fa-circle-o text-red"></i> 
+	        	<li><a href="#../index.php"><i class="fa fa-circle-o text-red"></i> 
 	        		<span>CERRAR SESION</span></a>
 	        	</li>
 	     	</ul>

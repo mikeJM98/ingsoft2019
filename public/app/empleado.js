@@ -19,7 +19,7 @@ function listado(){
 }
 
 function nuevo(){
-	$("#titulo").text("Registro nuevo "+tabla);
+	$("#titulo").text("Registro nuevo usuario");
 	$("#content").empty().html("<center> <br><br><img src='../public/img/cargando.gif'> </center>");
 	$.ajax({
 		url:url_base,

@@ -1,6 +1,6 @@
 <?php
 	require_once 'Conexion.php'; 
-	session_start();
+	
 	class Login{ 
 	    	private static $instancia;
 	    	private $dbh;
@@ -25,6 +25,8 @@
 				$query->execute(); $this->dbh = null;
 
 				if($query->rowCount() == 1){
+					session_destroy();
+					session_start();
 					$fila  = $query->fetch();
 					$_SESSION['idusuario'] = $fila['e_id'];
 					$_SESSION['usuario'] = $fila['e_nombres'].' '.$fila['e_apellidos'];	
@@ -38,7 +40,30 @@
 			}catch(PDOException $e){
 				print "Error!: " . $e->getMessage();	
 			}				
-		}	    
+		}
+		/*
+		public function bloquear_cuenta($user){
+			$sql = "UPDATE `empleado` SET `e_bloqueado` = '0' WHERE `e_usuario` = ?";
+			$query = $this->dbh->query($sql);
+			#$query->bindParam(1,$user); 
+			#$query->execute(); $this->dbh = null;
+	    }*/
+	    /*
+	    public function Estado_cuenta($usuario, $bloqueado){
+			try {				
+				$sql = "SELECT * from empleado where e_usuario = ".$usuario."and e_bloqueado =".$bloqueado;
+				$query = $this->dbh->prepare("SELECT * from empleado where e_usuario = $usuario and e_bloqueado = $bloqueado");
+				$query->execute(); $this->dbh = null;
+
+				if($query->rowCount() == 1){
+					$fila  = $query->fetch();
+					$_SESSION['idusuario'] = $fila['e_id'];	 
+					return true;
+				}			
+			}catch(PDOException $e){
+				print "Error!: " . $e->getMessage();	
+			}		
+		}*/
 	    	public function __clone(){
 	 		trigger_error('No Puede Clonar Este Objeto', E_USER_ERROR); 
 	    	} 
