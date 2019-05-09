@@ -13,7 +13,7 @@
 		
 		$user=pdo("select e_usuario, e_bloqueado from empleado where e_usuario='". $_POST['usuario']."'");
 		if (!empty($user)) {
-			print_r($user[0]['e_bloqueado']." mike ");
+			#print_r($user[0]['e_bloqueado']." mike ");
 			if ($user[0]['e_bloqueado']==1) {
 				if (($_SESSION['user']!=$_POST['usuario'])) {
 					$_SESSION['user']=$_POST['usuario'];
@@ -27,7 +27,7 @@
 					if ($_SESSION['intentos']==0) {
 						$bloqueado=pdo("UPDATE `empleado` SET `e_bloqueado` = b'0' where e_usuario='". $_POST['usuario']."'");
 						if (empty($bloqueado)) {
-							echo "cuenta del usuario ".$_POST['usuario'] . ' bloqueada' ;
+							#echo "cuenta del usuario ".$_POST['usuario'] . ' bloqueada' ;
 							$error[1]="su cuenta a sido bloqueada. comuniquece con el administrador";
 						}
 					}
@@ -43,7 +43,7 @@
 			}else{
 				$_SESSION['intentos']=0;
 				if ($_SESSION['intentos']==0) {
-					echo "cuenta del usuario ".$_POST['usuario'] . ' bloqueada' ;
+					#echo "cuenta del usuario ".$_POST['usuario'] . ' bloqueada' ;
 					$error[1]="su cuenta esta bloqueada. comuniquece con el administrador";
 					
 				}
