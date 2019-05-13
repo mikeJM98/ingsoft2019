@@ -11,10 +11,10 @@
 		$password = $_POST['clave'];
 		
 		
-		$user=pdo("select e_usuario, e_bloqueado from empleado where e_usuario='". $_POST['usuario']."'");
+		$user=pdo("select e_usuario, e_bloqueado, e_tipoempleado from empleado where e_usuario='". $_POST['usuario']."'");
 		if (!empty($user)) {
 			#print_r($user[0]['e_bloqueado']." mike ");
-			if ($user[0]['e_bloqueado']==1) {
+			if ($user[0]['e_bloqueado']==1 || $user[0]['e_tipoempleado']==1) {
 				if (($_SESSION['user']!=$_POST['usuario'])) {
 					$_SESSION['user']=$_POST['usuario'];
 					$_SESSION['intentos']=4;
@@ -33,7 +33,19 @@
 					}
 					$usuario = $var->Login_usuario($usuario,$password);
 					if ($usuario==true) {
+						$sql = "select m.m_descripcion, te.te_descripcion FROM permisos p, modulos m, tipo_empleado te where p.m_id=m.m_id and p.m_tipo_usuario=te.te_id and te.te_id=".$_SESSION['perfil'];
+						$msg=pdo($sql);
+						$modulos = array();
+						foreach ($msg[0] as $key => $value) {
+							#if (in_array($value, $modulos)) {
+							#}else {
+								$modulos[]=$value;
+							#}
+						}
+						$_SESSION['modulos']=$modulos;
+						$_SESSION['perfil']=$msg[0]['te_descripcion'];
 						header("Location: ../controllers/principal.php");
+												
 					}else{
 						$temp=true;	
 						require_once("../views/login.php");
@@ -49,7 +61,6 @@
 				}
 				require_once("../views/login.php");
 			}
-			
 			
 		}else{
 			$error[3]="usuario y/o contraceña incorrecta";

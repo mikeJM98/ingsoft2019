@@ -30,11 +30,7 @@
 					$fila  = $query->fetch();
 					$_SESSION['idusuario'] = $fila['e_id'];
 					$_SESSION['usuario'] = $fila['e_nombres'].' '.$fila['e_apellidos'];	
-					if ($fila['e_tipoempleado']==1) {
-						$_SESSION['perfil'] = 'Administrador';	
-					}else{
-						$_SESSION['perfil'] = 'Recepcionista';	
-					}	 
+					$_SESSION['perfil'] = $fila['e_tipoempleado'];		 
 					return true;
 				}			
 			}catch(PDOException $e){
