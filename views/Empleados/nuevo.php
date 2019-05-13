@@ -33,7 +33,7 @@
 				<option value="">Seleccione</option>
 				<?php 
 					foreach ($tipos as $value) { 
-						if ($value['te_id']!=1) {?>
+						if ($value['te_id']!=1 || $_SESSION['perfil']=='ADMINISTRADOR') {?>
 						<option value="<?php echo $value["te_id"]; ?>"> 
 							<?php echo $value["te_descripcion"]; ?> 
 						</option>

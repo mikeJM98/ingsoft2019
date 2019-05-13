@@ -22,12 +22,22 @@
 					<td><?php echo $value["e_direccion"]; ?></td>
 					<td><?php echo $value["e_celular"]; ?></td>
 					<td>
-						<button type="button" class="btn btn-warning btn-xs" onclick="modificar('<?php echo $value["e_id"]; ?>')">
+						<button type="button" class="btn btn-success btn-xs" onclick="modificar('<?php echo $value["e_id"]; ?>')">
 							<i class="fa fa-edit"></i> Editar
 						</button>
 						<?php if($value['e_tipoempleado']!=1) {?>							 
 							<button type="button" class="btn btn-danger btn-xs" onclick="confirmar('<?php echo $value["e_id"]; ?>')">
 								<i class="fa fa-trash-o"></i> Eliminar
+							</button>
+						<?php }?>
+						<?php if($value['e_bloqueado']==1 && $value['e_tipoempleado']!=1) {?>							 
+							<button type="button" class="btn btn-warning btn-xs" onclick="bloquea('<?php echo $value["e_id"]; ?>')">
+								<i class="fa fa-trash-o"></i> Bloquear
+							</button>
+						<?php }
+						if($value['e_bloqueado']!=1 && $value['e_tipoempleado']!=1){?>
+							<button type="button" class="btn btn-danger btn-xs" onclick="desbloquea('<?php echo $value["e_id"]; ?>')">
+								<i class="fa fa-trash-o"></i> Des-Bloquear
 							</button>
 						<?php }?>
 					</td>

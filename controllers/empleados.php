@@ -36,7 +36,15 @@
 		if ($_POST["accion"]==6) {
 			$data = $base->buscar("select *from empleado where e_estado=1 and e_dni='".$_POST["dni"]."' ");
 			echo json_encode($data);
-		}	
+		}
+		if ($_POST["accion"]==7) {
+			$data = $table->bloquear($_POST['id']);
+			echo $data;
+		}
+		if ($_POST["accion"]==8) {
+			$data = $table->desbloquear($_POST['id']);
+			echo $data;
+		}
 	}else{
 		require_once("../views/Empleados/index.php");
 	}

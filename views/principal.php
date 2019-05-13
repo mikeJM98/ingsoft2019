@@ -9,17 +9,6 @@
 		  	<div class="content-wrapper">
 			    	<section class="content">
 			      	<div class="row">
-					  	<div><p>
-						  <?php 
-							  echo "<pre>";
-							  foreach ($_SESSION['modulos'] as $key => $value) {
-								  echo $value;
-							  }
-							  echo "<br>";
-							  printf($_SESSION['perfil']);
-							echo "</pre>";
-							?>
-						  </p></div>
 			        		<div class="col-xs-12"> <br><br><br><br>
 			          			<center><img src="../public/dist/img/logo.jpg"></center>
 			        		</div>

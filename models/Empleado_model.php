@@ -95,17 +95,35 @@
 			}		
 		}
 	    	public function eliminar($id){	
-			try {				
-				$sql = "update empleado set e_estado=0 where e_id=".$_POST["id"];
-				$query = $this->dbh->prepare($sql);
-				$query->execute(); $this->dbh = null; return 1;
-			}catch(PDOException $e){
-				print "Error!: " . $e->getMessage();	
-			}				
-		}
+				try {				
+					$sql = "update empleado set e_estado=0 where e_id=".$_POST["id"];
+					$query = $this->dbh->prepare($sql);
+					$query->execute(); $this->dbh = null; return 1;
+				}catch(PDOException $e){
+					print "Error!: " . $e->getMessage();	
+				}			
+			}
+			public function bloquear($id){	
+				try {				
+					$sql = "update empleado set e_bloqueado=0 where e_id=".$_POST["id"];
+					$query = $this->dbh->prepare($sql);
+					$query->execute(); $this->dbh = null; return 1;
+				}catch(PDOException $e){
+					print "Error!: " . $e->getMessage();	
+				}			
+			}
+			public function desbloquear($id){	
+				try {				
+					$sql = "update empleado set e_bloqueado=1 where e_id=".$_POST["id"];
+					$query = $this->dbh->prepare($sql);
+					$query->execute(); $this->dbh = null; return 1;
+				}catch(PDOException $e){
+					print "Error!: " . $e->getMessage();	
+				}			
+			}
 
 	    	public function __clone(){
 	 		trigger_error('No Puede Clonar Este Objeto', E_USER_ERROR); 
-	    	} 
+	    } 
 	}
 ?>

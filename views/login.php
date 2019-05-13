@@ -58,7 +58,7 @@
 			    	</form>
  
 		    		<center>
-		    			<a href="#">SOFWARE DE HOTEL</a> Curso: Software II - FISI<br>
+		    			<a href="#">SOFWARE PARA HOTEL</a> Curso: Software II - FISI<br>
 		    		</center>
 		  	</div>
 		</div>

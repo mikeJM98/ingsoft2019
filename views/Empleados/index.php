@@ -7,26 +7,26 @@
 		 	<?php include("../views/layout/menu.php"); ?>
 		  
 		  	<div class="content-wrapper">
-			    	<section class="content">
-			      	<div class="row">
-			        		<div class="col-xs-12">
-			          			<div class="box">
-			          				<div class="box-header with-border">
-					              		<h3 class="box-title" id="titulo"></h3>
-					              		<div class="box-tools pull-right" id="alerta">
-					                			<div class="alert alert-danger alerta">
-								                	<b>ATENCION USUARIO:</b> 
-								                	<b id="alerta_text"></b>
-								           	</div>
-					              		</div>
-					            	</div>
-						           	<div class="box-body" id="content"></div>
-			          			</div>
-			        		</div>
-			      	</div>
-			    	</section>
+				<section class="content">
+					<div class="row">
+							<div class="col-xs-12">
+								<div class="box">
+									<div class="box-header with-border">
+										<h3 class="box-title" id="titulo"></h3>
+										<div class="box-tools pull-right" id="alerta">
+												<div class="alert alert-danger alerta">
+													<b>ATENCION USUARIO:</b> 
+													<b id="alerta_text"></b>
+											</div>
+										</div>
+									</div>
+									<div class="box-body" id="content"></div>
+								</div>
+							</div>
+					</div>
+				</section>
 
-			    	<div class="modal fade" tabindex="-1" role="dialog" id="confirmar">
+				<div class="modal fade" tabindex="-1" role="dialog" id="confirmar">
 					<div class="modal-dialog modal-sm">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -36,6 +36,36 @@
 								<center>
 									<button data-dismiss="modal" class="btn btn-danger" type="button">No, Cerrar</button>
 									<button class="btn btn-success" type="button" onclick="eliminar()">Si, Continuar</button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" tabindex="-1" role="dialog" id="bloquear">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Seguro que desea bloquear ? </h4>
+							</div>
+							<div class="modal-body">
+								<center>
+									<button data-dismiss="modal" class="btn btn-danger" type="button">No, Cerrar</button>
+									<button class="btn btn-success" type="button" onclick="bloquear()">Si, Continuar</button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" tabindex="-1" role="dialog" id="desbloquear">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Seguro que desea desbloquear ? </h4>
+							</div>
+							<div class="modal-body">
+								<center>
+									<button data-dismiss="modal" class="btn btn-danger" type="button">No, Cerrar</button>
+									<button class="btn btn-success" type="button" onclick="desbloquear()">Si, Continuar</button>
 								</center>
 							</div>
 						</div>

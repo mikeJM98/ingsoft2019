@@ -148,6 +148,44 @@ function eliminar(){
 		}
 	});
 }
+var idmant = 0;
+function bloquea(id){
+	idmant=id; $("#bloquear").modal("show");
+}
+function bloquear(){
+	$.ajax({
+		url:url_base,
+		data:'accion=7&id='+idmant,
+		type:'post',
+		success: function(data) {
+			if (data==1) {
+				$("#alerta_text").text(tabla.toUpperCase()+' BLOQUEADO');
+			}else{
+				$("#alerta_text").text('Ocurrió Un Error! Comunica Este Error');
+			}
+			$("#bloquear").modal("hide"); alerta_hide(); listado();
+		}
+	});
+}
+var idmant = 0;
+function desbloquea(id){
+	idmant=id; $("#desbloquear").modal("show");
+}
+function desbloquear(){
+	$.ajax({
+		url:url_base,
+		data:'accion=8&id='+idmant,
+		type:'post',
+		success: function(data) {
+			if (data==1) {
+				$("#alerta_text").text(tabla.toUpperCase()+' DESBLOQUEADO');
+			}else{
+				$("#alerta_text").text('Ocurrió Un Error! Comunica Este Error');
+			}
+			$("#desbloquear").modal("hide"); alerta_hide(); listado();
+		}
+	});
+}
 
 function alerta_hide(){
 	$("#alerta").css('display','block');

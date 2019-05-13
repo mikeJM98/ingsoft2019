@@ -13,7 +13,7 @@
 		
 		$user=pdo("select e_usuario, e_bloqueado, e_tipoempleado from empleado where e_usuario='". $_POST['usuario']."'");
 		if (!empty($user)) {
-			#print_r($user[0]['e_bloqueado']." mike ");
+			#print_r($user);
 			if ($user[0]['e_bloqueado']==1 || $user[0]['e_tipoempleado']==1) {
 				if (($_SESSION['user']!=$_POST['usuario'])) {
 					$_SESSION['user']=$_POST['usuario'];
@@ -33,18 +33,22 @@
 					}
 					$usuario = $var->Login_usuario($usuario,$password);
 					if ($usuario==true) {
-						$sql = "select m.m_descripcion, te.te_descripcion FROM permisos p, modulos m, tipo_empleado te where p.m_id=m.m_id and p.m_tipo_usuario=te.te_id and te.te_id=".$_SESSION['perfil'];
+						$sql = "select m.m_descripcion, te.te_descripcion FROM permisos p, modulos m, tipo_empleado te where (p.m_id=m.m_id and p.m_tipo_usuario=te.te_id) and te.te_id=".$_SESSION['perfil'];
 						$msg=pdo($sql);
-						$modulos = array();
-						foreach ($msg[0] as $key => $value) {
-							#if (in_array($value, $modulos)) {
-							#}else {
-								$modulos[]=$value;
-							#}
+						print_r($msg);
+						$modulos=array();
+						foreach ($msg as $key) {
+							foreach ($key as $k => $v) {
+								if(in_array($key['m_descripcion'] , $modulos)){
+								}else{
+									$modulos[]=$key['m_descripcion'];
+								}
+							}
 						}
 						$_SESSION['modulos']=$modulos;
 						$_SESSION['perfil']=$msg[0]['te_descripcion'];
 						header("Location: ../controllers/principal.php");
+						#require_once("../views/login.php");
 												
 					}else{
 						$temp=true;	
@@ -79,13 +83,13 @@
 			$res=$db->query($sql);
 
 			$list = array();
-				if($res){
-				foreach ($res as $key => $value ) {
-					$list[]=$value;
-				}
+			if($res){
+			//foreach ($res as $key) {
+				$list[]=$res;
+			//}
 			}
-
-			return $list;
+			$db==null;
+			return $res->fetchAll();
 		}catch(PDOException  $e ){
 			echo "Error: ".$e;
 		}

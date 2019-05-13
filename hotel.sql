@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2019 a las 04:54:22
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.2.17
+-- Host: localhost
+-- Generation Time: May 13, 2019 at 08:40 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hotel`
+-- Database: `hotel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -35,7 +35,7 @@ CREATE TABLE `categoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `categoria`
+-- Dumping data for table `categoria`
 --
 
 INSERT INTO `categoria` (`c_id`, `c_descripcion`, `c_estado`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `categoria` (`c_id`, `c_descripcion`, `c_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ciudad`
+-- Table structure for table `ciudad`
 --
 
 CREATE TABLE `ciudad` (
@@ -56,7 +56,7 @@ CREATE TABLE `ciudad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `ciudad`
+-- Dumping data for table `ciudad`
 --
 
 INSERT INTO `ciudad` (`c_id`, `c_pais`, `c_descripcion`, `c_estado`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `ciudad` (`c_id`, `c_pais`, `c_descripcion`, `c_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -81,7 +81,7 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `cliente`
+-- Dumping data for table `cliente`
 --
 
 INSERT INTO `cliente` (`c_id`, `c_tipocliente`, `c_dni`, `c_nombres`, `c_direccion`, `c_fechareg`, `c_celular`, `c_estado`) VALUES
@@ -94,7 +94,7 @@ INSERT INTO `cliente` (`c_id`, `c_tipocliente`, `c_dni`, `c_nombres`, `c_direcci
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `consumo`
+-- Table structure for table `consumo`
 --
 
 CREATE TABLE `consumo` (
@@ -110,7 +110,7 @@ CREATE TABLE `consumo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_consumo`
+-- Table structure for table `detalle_consumo`
 --
 
 CREATE TABLE `detalle_consumo` (
@@ -126,7 +126,7 @@ CREATE TABLE `detalle_consumo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_reserva`
+-- Table structure for table `detalle_reserva`
 --
 
 CREATE TABLE `detalle_reserva` (
@@ -137,7 +137,7 @@ CREATE TABLE `detalle_reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `detalle_reserva`
+-- Dumping data for table `detalle_reserva`
 --
 
 INSERT INTO `detalle_reserva` (`dr_reserva`, `dr_habitacion`, `dr_monto`, `dr_estado`) VALUES
@@ -147,7 +147,7 @@ INSERT INTO `detalle_reserva` (`dr_reserva`, `dr_habitacion`, `dr_monto`, `dr_es
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_servicio`
+-- Table structure for table `detalle_servicio`
 --
 
 CREATE TABLE `detalle_servicio` (
@@ -163,7 +163,7 @@ CREATE TABLE `detalle_servicio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Table structure for table `empleado`
 --
 
 CREATE TABLE `empleado` (
@@ -179,22 +179,24 @@ CREATE TABLE `empleado` (
   `e_fechareg` date DEFAULT NULL,
   `e_tipoempleado` int(11) NOT NULL,
   `e_estado` int(11) DEFAULT '1',
-  `e_bloqueado` bit(1) NOT NULL
+  `e_bloqueado` bit(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `empleado`
+-- Dumping data for table `empleado`
 --
 
 INSERT INTO `empleado` (`e_id`, `e_dni`, `e_nombres`, `e_apellidos`, `e_direccion`, `e_usuario`, `e_clave`, `e_celular`, `e_sexo`, `e_fechareg`, `e_tipoempleado`, `e_estado`, `e_bloqueado`) VALUES
-(1, '93589585', 'JUAN', 'ALVARADO', 'TARAPOTO', 'juan', '123', '3894984848', 'MASCULINO', '2017-02-07', 1, 0, b'0'),
+(1, '93589585', 'JUAN', 'ALVARADO', 'TARAPOTO', 'juan', '123', '3894984848', 'MASCULINO', '2017-02-07', 2, 1, b'1'),
 (2, '70989910', 'Christian Manue', 'Juárez Rivero', 'jr. cesar david 126', 'CMJR', '123', '956908983', 'MASCULINO', '2019-04-28', 2, 1, b'1'),
-(3, '49789796', 'sokal', 'sdsdsd', 'jt libre', 'm', 'm', '4956568984', 'MASCULINO', '2019-05-02', 1, 1, b'0');
+(3, '49789796', 'sokal', 'sdsdsd', 'jt libre', 'admin', 'admin', '4956568984', 'MASCULINO', '2019-05-02', 1, 1, b'1'),
+(4, '74276597', 'fdf', 'df', 'mfsl,m', 'j', 'j', '9999999999', 'MASCULINO', '2019-05-12', 2, 1, b'1'),
+(5, '11111111', 'qq', 'qqq', '1', 'q', 'q', '1111111111', 'MASCULINO', '2019-05-12', 2, 1, b'0');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `enseres`
+-- Table structure for table `enseres`
 --
 
 CREATE TABLE `enseres` (
@@ -206,7 +208,7 @@ CREATE TABLE `enseres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `enseres`
+-- Dumping data for table `enseres`
 --
 
 INSERT INTO `enseres` (`e_id`, `e_categoria`, `e_habitacion`, `e_descripcion`, `e_estado`) VALUES
@@ -222,7 +224,7 @@ INSERT INTO `enseres` (`e_id`, `e_categoria`, `e_habitacion`, `e_descripcion`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `entrada`
+-- Table structure for table `entrada`
 --
 
 CREATE TABLE `entrada` (
@@ -239,7 +241,7 @@ CREATE TABLE `entrada` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `entrada`
+-- Dumping data for table `entrada`
 --
 
 INSERT INTO `entrada` (`e_id`, `e_huesped`, `e_empleado`, `e_habitacion`, `e_ciudad`, `e_fechaini`, `e_fechafin`, `e_dias`, `e_total`, `e_estado`) VALUES
@@ -254,7 +256,7 @@ INSERT INTO `entrada` (`e_id`, `e_huesped`, `e_empleado`, `e_habitacion`, `e_ciu
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fail_sesion`
+-- Table structure for table `fail_sesion`
 --
 
 CREATE TABLE `fail_sesion` (
@@ -265,7 +267,7 @@ CREATE TABLE `fail_sesion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `habitacion`
+-- Table structure for table `habitacion`
 --
 
 CREATE TABLE `habitacion` (
@@ -278,7 +280,7 @@ CREATE TABLE `habitacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `habitacion`
+-- Dumping data for table `habitacion`
 --
 
 INSERT INTO `habitacion` (`h_id`, `h_tipohabitacion`, `h_nro`, `h_descripcion`, `h_precio`, `h_estado`) VALUES
@@ -293,7 +295,7 @@ INSERT INTO `habitacion` (`h_id`, `h_tipohabitacion`, `h_nro`, `h_descripcion`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `huesped`
+-- Table structure for table `huesped`
 --
 
 CREATE TABLE `huesped` (
@@ -309,7 +311,7 @@ CREATE TABLE `huesped` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `huesped`
+-- Dumping data for table `huesped`
 --
 
 INSERT INTO `huesped` (`h_id`, `h_tipodocumento`, `h_documento`, `h_nacionalidad`, `h_nombres`, `h_direccion`, `h_fechareg`, `h_celular`, `h_estado`) VALUES
@@ -322,7 +324,7 @@ INSERT INTO `huesped` (`h_id`, `h_tipodocumento`, `h_documento`, `h_nacionalidad
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `modulos`
+-- Table structure for table `modulos`
 --
 
 CREATE TABLE `modulos` (
@@ -332,21 +334,19 @@ CREATE TABLE `modulos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `modulos`
+-- Dumping data for table `modulos`
 --
 
 INSERT INTO `modulos` (`m_id`, `m_descripcion`, `m_estado`) VALUES
 (1, 'usuarios', b'1'),
 (2, 'mantenimiento', b'1'),
-(3, 'barredor', b'1'),
-(4, 'habitaciones', b'1'),
-(5, 'ds', b'0'),
-(6, 'mike', b'1');
+(3, 'reportes', b'1'),
+(4, 'habitaciones', b'1');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pais`
+-- Table structure for table `pais`
 --
 
 CREATE TABLE `pais` (
@@ -356,7 +356,7 @@ CREATE TABLE `pais` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `pais`
+-- Dumping data for table `pais`
 --
 
 INSERT INTO `pais` (`p_id`, `p_descripcion`, `p_estado`) VALUES
@@ -374,7 +374,7 @@ INSERT INTO `pais` (`p_id`, `p_descripcion`, `p_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permisos`
+-- Table structure for table `permisos`
 --
 
 CREATE TABLE `permisos` (
@@ -383,17 +383,21 @@ CREATE TABLE `permisos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `permisos`
+-- Dumping data for table `permisos`
 --
 
 INSERT INTO `permisos` (`m_id`, `m_tipo_usuario`) VALUES
+(1, 1),
+(4, 1),
 (2, 1),
-(2, 1);
+(3, 1),
+(2, 2),
+(4, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
@@ -406,7 +410,7 @@ CREATE TABLE `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Dumping data for table `producto`
 --
 
 INSERT INTO `producto` (`p_id`, `p_categoria`, `p_descripcion`, `p_stock`, `p_precio`, `p_estado`) VALUES
@@ -415,7 +419,7 @@ INSERT INTO `producto` (`p_id`, `p_categoria`, `p_descripcion`, `p_stock`, `p_pr
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reserva`
+-- Table structure for table `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -427,7 +431,7 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `reserva`
+-- Dumping data for table `reserva`
 --
 
 INSERT INTO `reserva` (`r_id`, `r_cliente`, `r_fecha`, `r_total`, `r_estado`) VALUES
@@ -439,7 +443,7 @@ INSERT INTO `reserva` (`r_id`, `r_cliente`, `r_fecha`, `r_total`, `r_estado`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `servicio`
+-- Table structure for table `servicio`
 --
 
 CREATE TABLE `servicio` (
@@ -451,7 +455,7 @@ CREATE TABLE `servicio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `servicio`
+-- Dumping data for table `servicio`
 --
 
 INSERT INTO `servicio` (`s_id`, `s_entrada`, `s_tiposervicio`, `s_total`, `s_estado`) VALUES
@@ -465,7 +469,7 @@ INSERT INTO `servicio` (`s_id`, `s_entrada`, `s_tiposervicio`, `s_total`, `s_est
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_cliente`
+-- Table structure for table `tipo_cliente`
 --
 
 CREATE TABLE `tipo_cliente` (
@@ -475,7 +479,7 @@ CREATE TABLE `tipo_cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `tipo_cliente`
+-- Dumping data for table `tipo_cliente`
 --
 
 INSERT INTO `tipo_cliente` (`tc_id`, `tc_descripcion`, `tc_estado`) VALUES
@@ -485,7 +489,7 @@ INSERT INTO `tipo_cliente` (`tc_id`, `tc_descripcion`, `tc_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_documento`
+-- Table structure for table `tipo_documento`
 --
 
 CREATE TABLE `tipo_documento` (
@@ -495,7 +499,7 @@ CREATE TABLE `tipo_documento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `tipo_documento`
+-- Dumping data for table `tipo_documento`
 --
 
 INSERT INTO `tipo_documento` (`td_id`, `td_descripcion`, `td_estado`) VALUES
@@ -505,7 +509,7 @@ INSERT INTO `tipo_documento` (`td_id`, `td_descripcion`, `td_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_empleado`
+-- Table structure for table `tipo_empleado`
 --
 
 CREATE TABLE `tipo_empleado` (
@@ -515,7 +519,7 @@ CREATE TABLE `tipo_empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `tipo_empleado`
+-- Dumping data for table `tipo_empleado`
 --
 
 INSERT INTO `tipo_empleado` (`te_id`, `te_descripcion`, `te_estado`) VALUES
@@ -526,7 +530,7 @@ INSERT INTO `tipo_empleado` (`te_id`, `te_descripcion`, `te_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_habitacion`
+-- Table structure for table `tipo_habitacion`
 --
 
 CREATE TABLE `tipo_habitacion` (
@@ -536,7 +540,7 @@ CREATE TABLE `tipo_habitacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `tipo_habitacion`
+-- Dumping data for table `tipo_habitacion`
 --
 
 INSERT INTO `tipo_habitacion` (`th_id`, `th_descripcion`, `th_estado`) VALUES
@@ -546,7 +550,7 @@ INSERT INTO `tipo_habitacion` (`th_id`, `th_descripcion`, `th_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_servicio`
+-- Table structure for table `tipo_servicio`
 --
 
 CREATE TABLE `tipo_servicio` (
@@ -556,7 +560,7 @@ CREATE TABLE `tipo_servicio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `tipo_servicio`
+-- Dumping data for table `tipo_servicio`
 --
 
 INSERT INTO `tipo_servicio` (`ts_id`, `ts_descripcion`, `ts_estado`) VALUES
@@ -564,31 +568,31 @@ INSERT INTO `tipo_servicio` (`ts_id`, `ts_descripcion`, `ts_estado`) VALUES
 (2, 'INTERNET WIFI', 1);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `categoria`
+-- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`c_id`);
 
 --
--- Indices de la tabla `ciudad`
+-- Indexes for table `ciudad`
 --
 ALTER TABLE `ciudad`
   ADD PRIMARY KEY (`c_id`),
   ADD KEY `pais_fk` (`c_pais`);
 
 --
--- Indices de la tabla `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`c_id`),
   ADD KEY `tipocliente_fk` (`c_tipocliente`);
 
 --
--- Indices de la tabla `consumo`
+-- Indexes for table `consumo`
 --
 ALTER TABLE `consumo`
   ADD PRIMARY KEY (`c_id`),
@@ -596,35 +600,35 @@ ALTER TABLE `consumo`
   ADD KEY `fk_empleado` (`c_empleado`);
 
 --
--- Indices de la tabla `detalle_consumo`
+-- Indexes for table `detalle_consumo`
 --
 ALTER TABLE `detalle_consumo`
   ADD PRIMARY KEY (`dc_consumo`,`dc_producto`),
   ADD KEY `fk_producto` (`dc_producto`);
 
 --
--- Indices de la tabla `detalle_reserva`
+-- Indexes for table `detalle_reserva`
 --
 ALTER TABLE `detalle_reserva`
   ADD PRIMARY KEY (`dr_reserva`,`dr_habitacion`),
   ADD KEY `fk_habitacion` (`dr_habitacion`);
 
 --
--- Indices de la tabla `detalle_servicio`
+-- Indexes for table `detalle_servicio`
 --
 ALTER TABLE `detalle_servicio`
   ADD PRIMARY KEY (`ds_entrada`,`ds_producto`),
   ADD KEY `fk_producto1` (`ds_producto`);
 
 --
--- Indices de la tabla `empleado`
+-- Indexes for table `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`e_id`),
   ADD KEY `tipoempleado_fk1` (`e_tipoempleado`);
 
 --
--- Indices de la tabla `enseres`
+-- Indexes for table `enseres`
 --
 ALTER TABLE `enseres`
   ADD PRIMARY KEY (`e_id`),
@@ -632,7 +636,7 @@ ALTER TABLE `enseres`
   ADD KEY `fk_categoria1` (`e_categoria`);
 
 --
--- Indices de la tabla `entrada`
+-- Indexes for table `entrada`
 --
 ALTER TABLE `entrada`
   ADD PRIMARY KEY (`e_id`),
@@ -642,266 +646,266 @@ ALTER TABLE `entrada`
   ADD KEY `fk_habitacion2` (`e_habitacion`);
 
 --
--- Indices de la tabla `habitacion`
+-- Indexes for table `habitacion`
 --
 ALTER TABLE `habitacion`
   ADD PRIMARY KEY (`h_id`),
   ADD KEY `tipohabitacion_fk` (`h_tipohabitacion`);
 
 --
--- Indices de la tabla `huesped`
+-- Indexes for table `huesped`
 --
 ALTER TABLE `huesped`
   ADD PRIMARY KEY (`h_id`),
   ADD KEY `tipodoc_fk` (`h_tipodocumento`);
 
 --
--- Indices de la tabla `modulos`
+-- Indexes for table `modulos`
 --
 ALTER TABLE `modulos`
   ADD PRIMARY KEY (`m_id`);
 
 --
--- Indices de la tabla `pais`
+-- Indexes for table `pais`
 --
 ALTER TABLE `pais`
   ADD PRIMARY KEY (`p_id`);
 
 --
--- Indices de la tabla `permisos`
+-- Indexes for table `permisos`
 --
 ALTER TABLE `permisos`
   ADD KEY `permisos_tipo_usuario` (`m_tipo_usuario`),
   ADD KEY `permiso_modulos` (`m_id`);
 
 --
--- Indices de la tabla `producto`
+-- Indexes for table `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`p_id`),
   ADD KEY `categoria_fk` (`p_categoria`);
 
 --
--- Indices de la tabla `reserva`
+-- Indexes for table `reserva`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`r_id`),
   ADD KEY `fk_cliente1` (`r_cliente`);
 
 --
--- Indices de la tabla `servicio`
+-- Indexes for table `servicio`
 --
 ALTER TABLE `servicio`
   ADD PRIMARY KEY (`s_id`),
   ADD KEY `fk_entrada` (`s_entrada`);
 
 --
--- Indices de la tabla `tipo_cliente`
+-- Indexes for table `tipo_cliente`
 --
 ALTER TABLE `tipo_cliente`
   ADD PRIMARY KEY (`tc_id`);
 
 --
--- Indices de la tabla `tipo_documento`
+-- Indexes for table `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
   ADD PRIMARY KEY (`td_id`);
 
 --
--- Indices de la tabla `tipo_empleado`
+-- Indexes for table `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   ADD PRIMARY KEY (`te_id`);
 
 --
--- Indices de la tabla `tipo_habitacion`
+-- Indexes for table `tipo_habitacion`
 --
 ALTER TABLE `tipo_habitacion`
   ADD PRIMARY KEY (`th_id`);
 
 --
--- Indices de la tabla `tipo_servicio`
+-- Indexes for table `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
   ADD PRIMARY KEY (`ts_id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `categoria`
+-- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `ciudad`
+-- AUTO_INCREMENT for table `ciudad`
 --
 ALTER TABLE `ciudad`
   MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `cliente`
+-- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `consumo`
+-- AUTO_INCREMENT for table `consumo`
 --
 ALTER TABLE `consumo`
   MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `empleado`
+-- AUTO_INCREMENT for table `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `enseres`
+-- AUTO_INCREMENT for table `enseres`
 --
 ALTER TABLE `enseres`
   MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `entrada`
+-- AUTO_INCREMENT for table `entrada`
 --
 ALTER TABLE `entrada`
   MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `habitacion`
+-- AUTO_INCREMENT for table `habitacion`
 --
 ALTER TABLE `habitacion`
   MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `huesped`
+-- AUTO_INCREMENT for table `huesped`
 --
 ALTER TABLE `huesped`
   MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `modulos`
+-- AUTO_INCREMENT for table `modulos`
 --
 ALTER TABLE `modulos`
   MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `pais`
+-- AUTO_INCREMENT for table `pais`
 --
 ALTER TABLE `pais`
   MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
   MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `reserva`
+-- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
   MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `servicio`
+-- AUTO_INCREMENT for table `servicio`
 --
 ALTER TABLE `servicio`
   MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_cliente`
+-- AUTO_INCREMENT for table `tipo_cliente`
 --
 ALTER TABLE `tipo_cliente`
   MODIFY `tc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_documento`
+-- AUTO_INCREMENT for table `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
   MODIFY `td_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_empleado`
+-- AUTO_INCREMENT for table `tipo_empleado`
 --
 ALTER TABLE `tipo_empleado`
   MODIFY `te_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_habitacion`
+-- AUTO_INCREMENT for table `tipo_habitacion`
 --
 ALTER TABLE `tipo_habitacion`
   MODIFY `th_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_servicio`
+-- AUTO_INCREMENT for table `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
   MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `ciudad`
+-- Constraints for table `ciudad`
 --
 ALTER TABLE `ciudad`
   ADD CONSTRAINT `pais_fk` FOREIGN KEY (`c_pais`) REFERENCES `pais` (`p_id`);
 
 --
--- Filtros para la tabla `cliente`
+-- Constraints for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD CONSTRAINT `tipocliente_fk` FOREIGN KEY (`c_tipocliente`) REFERENCES `tipo_cliente` (`tc_id`);
 
 --
--- Filtros para la tabla `consumo`
+-- Constraints for table `consumo`
 --
 ALTER TABLE `consumo`
   ADD CONSTRAINT `fk_cliente` FOREIGN KEY (`c_cliente`) REFERENCES `cliente` (`c_id`),
   ADD CONSTRAINT `fk_empleado` FOREIGN KEY (`c_empleado`) REFERENCES `empleado` (`e_id`);
 
 --
--- Filtros para la tabla `detalle_consumo`
+-- Constraints for table `detalle_consumo`
 --
 ALTER TABLE `detalle_consumo`
   ADD CONSTRAINT `fk_consumo` FOREIGN KEY (`dc_consumo`) REFERENCES `consumo` (`c_id`),
   ADD CONSTRAINT `fk_producto` FOREIGN KEY (`dc_producto`) REFERENCES `producto` (`p_id`);
 
 --
--- Filtros para la tabla `detalle_reserva`
+-- Constraints for table `detalle_reserva`
 --
 ALTER TABLE `detalle_reserva`
   ADD CONSTRAINT `fk_habitacion` FOREIGN KEY (`dr_habitacion`) REFERENCES `habitacion` (`h_id`),
   ADD CONSTRAINT `fk_reserva` FOREIGN KEY (`dr_reserva`) REFERENCES `reserva` (`r_id`);
 
 --
--- Filtros para la tabla `detalle_servicio`
+-- Constraints for table `detalle_servicio`
 --
 ALTER TABLE `detalle_servicio`
   ADD CONSTRAINT `fk_entrada1` FOREIGN KEY (`ds_entrada`) REFERENCES `entrada` (`e_id`),
   ADD CONSTRAINT `fk_producto1` FOREIGN KEY (`ds_producto`) REFERENCES `producto` (`p_id`);
 
 --
--- Filtros para la tabla `empleado`
+-- Constraints for table `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `tipoempleado_fk1` FOREIGN KEY (`e_tipoempleado`) REFERENCES `tipo_empleado` (`te_id`);
 
 --
--- Filtros para la tabla `enseres`
+-- Constraints for table `enseres`
 --
 ALTER TABLE `enseres`
   ADD CONSTRAINT `fk_categoria1` FOREIGN KEY (`e_categoria`) REFERENCES `categoria` (`c_id`),
   ADD CONSTRAINT `fk_habitacion1` FOREIGN KEY (`e_habitacion`) REFERENCES `habitacion` (`h_id`);
 
 --
--- Filtros para la tabla `entrada`
+-- Constraints for table `entrada`
 --
 ALTER TABLE `entrada`
   ADD CONSTRAINT `fk_ciudad1` FOREIGN KEY (`e_ciudad`) REFERENCES `ciudad` (`c_id`),
@@ -910,38 +914,38 @@ ALTER TABLE `entrada`
   ADD CONSTRAINT `fk_huesped` FOREIGN KEY (`e_huesped`) REFERENCES `huesped` (`h_id`);
 
 --
--- Filtros para la tabla `habitacion`
+-- Constraints for table `habitacion`
 --
 ALTER TABLE `habitacion`
   ADD CONSTRAINT `tipohabitacion_fk` FOREIGN KEY (`h_tipohabitacion`) REFERENCES `tipo_habitacion` (`th_id`);
 
 --
--- Filtros para la tabla `huesped`
+-- Constraints for table `huesped`
 --
 ALTER TABLE `huesped`
   ADD CONSTRAINT `tipodoc_fk` FOREIGN KEY (`h_tipodocumento`) REFERENCES `tipo_documento` (`td_id`);
 
 --
--- Filtros para la tabla `permisos`
+-- Constraints for table `permisos`
 --
 ALTER TABLE `permisos`
   ADD CONSTRAINT `permiso_modulos` FOREIGN KEY (`m_id`) REFERENCES `modulos` (`m_id`),
   ADD CONSTRAINT `permisos_tipo_usuario` FOREIGN KEY (`m_tipo_usuario`) REFERENCES `tipo_empleado` (`te_id`);
 
 --
--- Filtros para la tabla `producto`
+-- Constraints for table `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `categoria_fk` FOREIGN KEY (`p_categoria`) REFERENCES `categoria` (`c_id`);
 
 --
--- Filtros para la tabla `reserva`
+-- Constraints for table `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `fk_cliente1` FOREIGN KEY (`r_cliente`) REFERENCES `cliente` (`c_id`);
 
 --
--- Filtros para la tabla `servicio`
+-- Constraints for table `servicio`
 --
 ALTER TABLE `servicio`
   ADD CONSTRAINT `fk_entrada` FOREIGN KEY (`s_entrada`) REFERENCES `entrada` (`e_id`);
