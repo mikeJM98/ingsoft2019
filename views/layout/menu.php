@@ -32,9 +32,9 @@
 							</span>
 						</a>
 						<ul class="treeview-menu" id="ESTADIAS">
-							<li><a href="#entrada.php"><i class="fa fa-circle-o"></i> Entradas</a></li>
-							<li><a href="#reserva.php"><i class="fa fa-circle-o"></i> Reservas</a></li>
-							<li><a href="#huesped.php"><i class="fa fa-circle-o"></i> Huesped</a></li>
+							<li><a href="entrada.php"><i class="fa fa-circle-o"></i> Entradas</a></li>
+							<li><a href="reserva.php"><i class="fa fa-circle-o"></i> Reservas</a></li>
+							<li><a href="huesped.php"><i class="fa fa-circle-o"></i> Cliente</a></li>
 							<!--<li><a href="#cliente.php"><i class="fa fa-circle-o"></i> Cliente</a></li>-->
 						</ul>
 					</li>
@@ -49,8 +49,8 @@
 							</span>
 						</a>
 						<ul class="treeview-menu" id="HABITACION">
-							<li><a href="#habitacion.php"><i class="fa fa-circle-o"></i> Habitacion</a></li>
-							<li><a href="#tipo_habitacion.php"><i class="fa fa-circle-o"></i> Tipo habitacion</a></li>
+							<li><a href="habitacion.php"><i class="fa fa-circle-o"></i> Habitacion</a></li>
+							<li><a href="tipo_habitacion.php"><i class="fa fa-circle-o"></i> Tipo habitacion</a></li>
 						</ul>
 					</li>
 				<?php } ?>
@@ -64,8 +64,8 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="#reporte.php?accion=1"><i class="fa fa-circle-o"></i> Reserva por dia</a></li>
-							<li><a href="#reporte.php?accion=2"><i class="fa fa-circle-o"></i> Entrada por dia</a></li>
+							<li><a href="reporte.php?accion=1"><i class="fa fa-circle-o"></i> Reserva por dia</a></li>
+							<li><a href="reporte.php?accion=2"><i class="fa fa-circle-o"></i> Entrada por dia</a></li>
 						</ul>
 					</li>
 				<?php } ?>
@@ -79,14 +79,14 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="#tipo_documento.php"><i class="fa fa-circle-o"></i> Tipo documento</a></li>
-							<li><a href="#producto.php"><i class="fa fa-circle-o"></i> Producto</a></li>
-							<li><a href="#categorias.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
+							<li><a href="tipo_documento.php"><i class="fa fa-circle-o"></i> Tipo documento</a></li>
+							<li><a href="producto.php"><i class="fa fa-circle-o"></i> Producto</a></li>
+							<li><a href="categorias.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
 							
-							<li><a href="#ciudad.php"><i class="fa fa-circle-o"></i> Ciudad</a></li>
-							<li><a href="#pais.php"><i class="fa fa-circle-o"></i> Pais</a></li>
-							<li><a href="#tipo_cliente.php"><i class="fa fa-circle-o"></i> Tipo cliente</a></li>
-							<li><a href="#tipo_servicio.php"><i class="fa fa-circle-o"></i> Tipo servicio</a></li>
+							<li><a href="ciudad.php"><i class="fa fa-circle-o"></i> Ciudad</a></li>
+							<li><a href="pais.php"><i class="fa fa-circle-o"></i> Pais</a></li>
+							<li><a href="tipo_cliente.php"><i class="fa fa-circle-o"></i> Tipo cliente</a></li>
+							<li><a href="tipo_servicio.php"><i class="fa fa-circle-o"></i> Tipo servicio</a></li>
 						</ul>
 					</li>
 				<?php } ?>
