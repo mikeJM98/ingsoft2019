@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 13, 2019 at 08:40 AM
+-- Generation Time: May 19, 2019 at 06:53 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -85,11 +85,12 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`c_id`, `c_tipocliente`, `c_dni`, `c_nombres`, `c_direccion`, `c_fechareg`, `c_celular`, `c_estado`) VALUES
-(1, 1, '98538458', 'juan morales dfgf', 'Tarapoto', '2017-02-06', '958485857', 0),
-(3, 1, '48515513', 'Juan Miguel Alvarado Julca', 'jr. cesar david 123', '2019-04-24', '927202725', 0),
-(4, 1, '70989910', 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 0),
-(5, 1, '70989910', 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 0),
-(6, 1, '70188345', 'Ricardo salazar Ríos', 'jr. aviación 345', '2019-04-28', '945678754', 1);
+(1, 1, '98538458', 'juan morales dfgf', 'Tarapoto', '2017-02-06', '958485857', 1),
+(3, 1, '48515513', 'Juan Miguel Alvarado Julca', 'jr. cesar david 123', '2019-04-24', '927202725', 1),
+(4, 1, '70989910', 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 1),
+(5, 1, '70989910', 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 1),
+(6, 1, '70188345', 'Ricardo salazar Ríos', 'jr. aviación 345', '2019-04-28', '945678754', 1),
+(7, 1, '21212121', 'admin admin', 'dsv sda', '2019-05-19', '1212121211', 1);
 
 -- --------------------------------------------------------
 
@@ -251,7 +252,8 @@ INSERT INTO `entrada` (`e_id`, `e_huesped`, `e_empleado`, `e_habitacion`, `e_ciu
 (9, 7, 1, 3, 0, '2019-04-28', '2019-05-01', 3, 150, 0),
 (10, 8, 1, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0),
 (11, 7, 1, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0),
-(12, 7, 2, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0);
+(12, 7, 2, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0),
+(13, 10, 3, 8, 0, '2019-05-19', '2019-05-20', 1, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -290,7 +292,8 @@ INSERT INTO `habitacion` (`h_id`, `h_tipohabitacion`, `h_nro`, `h_descripcion`, 
 (4, 1, '103', 'Habitacion nueva', 50, 1),
 (5, 2, '104', 'Habitacion nueva', 60, 1),
 (6, 2, '105', 'Habitacion nueva', 60, 1),
-(7, 2, '106', 'Habitacion nueva', 100, 1);
+(7, 2, '106', 'Habitacion nueva', 100, 1),
+(8, 1, '1', 'habitacion numero 1', 10, 2);
 
 -- --------------------------------------------------------
 
@@ -315,11 +318,13 @@ CREATE TABLE `huesped` (
 --
 
 INSERT INTO `huesped` (`h_id`, `h_tipodocumento`, `h_documento`, `h_nacionalidad`, `h_nombres`, `h_direccion`, `h_fechareg`, `h_celular`, `h_estado`) VALUES
-(3, 1, '68484885', 1, 'juan martinez', NULL, '2017-02-19', NULL, 0),
-(4, 1, '98344444', 5, 'Mario Velarde', NULL, '2017-02-22', NULL, 0),
-(5, 1, '49388475', 6, 'Cristiano Ronaldo', NULL, '2017-02-27', NULL, 0),
-(7, 1, '70989910', 2, 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 0),
-(8, 1, '48515513', 7, 'Ricardo salazar Ríos', NULL, '2019-04-28', NULL, 1);
+(3, 1, '68484885', 1, 'juan martinez', 'sas', '2017-02-19', '123456789', 1),
+(4, 1, '98344444', 5, 'Mario Velarde', 'sasas', '2017-02-22', '123456789', 1),
+(5, 1, '49388475', 6, 'Cristiano Ronaldo', 'asaas', '2017-02-27', '123456789', 1),
+(7, 1, '70989910', 2, 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 1),
+(8, 1, '48515513', 7, 'Ricardo salazar Ríos', 'HBKHL ', '2019-04-28', '123456789', 1),
+(9, 1, '11111111', 8, 'name lasname', 'strret ', '2019-05-19', '1111111111', 1),
+(10, 1, '74276597', 8, 'name lasname', 'adfbvgf', '2019-05-19', '22222222', 1);
 
 -- --------------------------------------------------------
 
@@ -341,7 +346,9 @@ INSERT INTO `modulos` (`m_id`, `m_descripcion`, `m_estado`) VALUES
 (1, 'usuarios', b'1'),
 (2, 'mantenimiento', b'1'),
 (3, 'reportes', b'1'),
-(4, 'habitaciones', b'1');
+(4, 'habitaciones', b'1'),
+(5, 'estadias', b'1'),
+(6, 'clientes', b'1');
 
 -- --------------------------------------------------------
 
@@ -360,13 +367,13 @@ CREATE TABLE `pais` (
 --
 
 INSERT INTO `pais` (`p_id`, `p_descripcion`, `p_estado`) VALUES
-(1, 'PERU', 0),
-(2, 'CHILE', 0),
-(3, 'ARGENTINA', 0),
-(4, 'BRASIL', 0),
-(5, 'COLOMBIA', 0),
-(6, 'ECUADOR', 0),
-(7, 'PORTUGAL', 0),
+(1, 'PERU', 1),
+(2, 'CHILE', 1),
+(3, 'ARGENTINA', 1),
+(4, 'BRASIL', 1),
+(5, 'COLOMBIA', 1),
+(6, 'ECUADOR', 1),
+(7, 'PORTUGAL', 1),
 (8, 'Perú', 1),
 (9, 'l', 1),
 (10, 'mjkl', 1);
@@ -392,7 +399,9 @@ INSERT INTO `permisos` (`m_id`, `m_tipo_usuario`) VALUES
 (2, 1),
 (3, 1),
 (2, 2),
-(4, 2);
+(4, 2),
+(5, 1),
+(6, 1);
 
 -- --------------------------------------------------------
 
@@ -438,7 +447,7 @@ INSERT INTO `reserva` (`r_id`, `r_cliente`, `r_fecha`, `r_total`, `r_estado`) VA
 (1, 1, '2017-02-19', NULL, 2),
 (2, 4, '2019-04-27', NULL, 2),
 (3, 5, '2019-04-27', NULL, 2),
-(4, 6, '2019-05-02', NULL, 1);
+(4, 6, '2019-05-02', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -749,7 +758,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `consumo`
@@ -773,19 +782,19 @@ ALTER TABLE `enseres`
 -- AUTO_INCREMENT for table `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `habitacion`
 --
 ALTER TABLE `habitacion`
-  MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `huesped`
 --
 ALTER TABLE `huesped`
-  MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `modulos`
