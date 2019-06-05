@@ -4,7 +4,7 @@
 	}
 ?>
 <header class="main-header">
-    	<a href="../index.php" class="logo">
+    	<a href="../controllers/principal.php" class="logo">
       	<span class="logo-mini">PFDV</span>
       	<span class="logo-lg"><b>FLOR</b> DEL VALLE</span>
     	</a>
@@ -47,7 +47,7 @@
 			              	</li>
 			              	<li class="user-footer">
 			                		<div class="pull-right">
-			                  		<a href="../index.php" class="btn btn-default btn-flat">Cerrar sesion</a>
+			                  			<a href="../index.php" class="btn btn-default btn-flat">Cerrar sesion</a>
 			                		</div>
 			              	</li>
 		            	</ul>

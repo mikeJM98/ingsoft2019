@@ -8,8 +8,8 @@
 	</div>
 	<div class="form-group">
 		<center>
-			<button class="btn btn-danger" type="button" onclick="listado()">Cerrar</button>
 			<button class="btn btn-success" type="submit" id="botonguardar">Guardar</button>
+			<button class="btn btn-danger" type="button" onclick="listado()">Cerrar</button>
 		</center>
 	</div>
 </form>

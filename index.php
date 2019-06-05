@@ -4,6 +4,7 @@
     	</head>
     	<body>
         	<?php
+				session_destroy();
         		session_start();
 				$_SESSION['intentos']=4;
 				$_SESSION['user']='root';

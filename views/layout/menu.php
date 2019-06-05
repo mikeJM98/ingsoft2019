@@ -127,7 +127,7 @@
 				?>
 	        	
 	        	<li class="header">OTRAS OPCIONES</li>
-	        	<li><a href="#../index.php"><i class="fa fa-check-circle-o text-red"></i> 
+	        	<li><a href="../index.php"><i class="fa fa-check-circle-o text-red"></i> 
 	        		<span>CERRAR SESION</span></a>
 	        	</li>
 	     	</ul>

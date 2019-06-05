@@ -2,10 +2,9 @@
 	<input type="hidden" name="id" id="id">
 	<div class="form-group">
 		<label class="col-lg-1 control-label"></label>
-		<label class="col-lg-1 control-label">DNI*</label>
+		<label class="col-lg-1 control-label">DNI* <i class="fa fa-bookmark-o"></i></label>
 		<div class="col-lg-2">
 			<div class="iconic-input">
-				<i class="fa fa-bookmark-o"></i>
 				<input type="text" class="form-control" name="dni" id="dni" maxlength="8" minlength="8" required onkeypress="return numeric(event)" onkeyup="buscarcliente()">
 			</div>
 		</div>
@@ -16,17 +15,15 @@
 	</div>
 	<div class="form-group">
 		<label class="col-lg-1 control-label"></label>
-		<label class="col-lg-1 control-label">Celular</label>
+		<label class="col-lg-1 control-label">Celular <i class="fa fa-mobile"></i></label>
 		<div class="col-lg-2">
 			<div class="iconic-input">
-				<i class="fa fa-mobile"></i>
 				<input type="text" class="form-control" name="celular" id="celular" maxlength="10" onkeypress="return numeric(event)">
 			</div>
 		</div>
-		<label class="col-lg-2 control-label">Direccion cliente</label>
+		<label class="col-lg-2 control-label">Direccion cliente <i class="fa fa-map-marker"></i></label>
 		<div class="col-lg-2">
 			<div class="iconic-input">
-				<i class="fa fa-map-marker"></i>
 				<input type="text" class="form-control" name="direccion" id="direccion" maxlength="100" required>
 			</div>
 		</div>
@@ -46,8 +43,8 @@
 	</div>
 	<div class="form-group">
 		<center>
-			<button class="btn btn-danger" type="button" onclick="listado()">Cerrar</button>
 			<button class="btn btn-success" type="submit" id="botonguardar">Guardar</button>
+			<button class="btn btn-danger" type="button" onclick="listado()">Cerrar</button>	
 		</center>
 	</div>
 </form>
