@@ -18,7 +18,7 @@
 	     	<ul class="sidebar-menu">
 				<li class="header">LISTA OPCIONES</li>
 				<li class="treeview">
-					<a href="#">
+					<a href="entrada.php">
 						<i class="fa fa-dashboard"></i> <span>PRINCIPAL</span>
 					</a>
 				</li>

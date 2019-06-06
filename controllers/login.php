@@ -47,8 +47,8 @@
 						}
 						$_SESSION['modulos']=$modulos;
 						$_SESSION['perfil']=$msg[0]['te_descripcion'];
-						header("Location: ../controllers/principal.php");
-						#require_once("../views/login.php");
+						header("Location: ../controllers/entrada.php");
+						#require_once(".../controllers/entrada.php");
 												
 					}else{
 						$temp=true;	
