@@ -32,9 +32,9 @@
 							<?php }else{
 								if ($value["h_estado"]==2) { ?>
 									<h3 class="box-title" style="color: <?php echo $letra;?>; font-weight: bold;">OCUPADA</h3><br><br>
-									<button type="button" class="btn btn-danger" onclick="confirmar('<?php echo $value["h_id"];?>')">Finalizar</button>
-									<button type="button" class="btn btn-warning" onclick="infoentrada('<?php echo $value["h_id"];?>')">Ver</button>
-									<button type="button" class="btn btn-success" onclick="agregar_servicio('<?php echo $value["h_id"];?>')"><i class="fa fa-plus"></i> Servicio</button>
+									<button type="button" class="btn btn-danger" onclick="confirmar(<?php echo $value['h_id'];?>)">Finalizar</button>
+									<button type="button" class="btn btn-warning" name="ver" id="ver" onclick="infoentrada(<?php echo $value['h_id'];?>)">Ver</button>
+									<button type="button" class="btn btn-success" onclick="agregar_servicio(<?php echo $value['h_id'];?>)"><i class="fa fa-plus"></i> Servicio</button>
 								<?php }else{ ?>
 									<h3 class="box-title" style="color: <?php echo $letra;?>; font-weight: bold;">RESERVADA HOY</h3><br><br>
 									<button type="button" class="btn btn-warning">Precio S/. <?php echo $value["h_precio"];?></button>

@@ -28,34 +28,48 @@
 		<label class="col-md-1 control-label">Celular <i class="fa fa-mobile"></i></label>
 		<div class="col-md-2">
 			<div class="iconic-input bg-danger">
-				<input type="text" class="form-control" name="celular" id="celular" maxlength="10" onkeypress="return numeric(event)">
+				<input type="text" class="form-control" name="celular" id="celular" minlength="9" maxlength="13" onkeypress="return numeric(event)">
 			</div>
 		</div>
-		<label class="col-md-1 control-label">Pais</label>
-		<div class="col-md-2">
-			<select class="form-control" name="pais" id="pais" required="true" onchange="traerciudad()">
-				<option value="">Seleccione</option>
-				<?php 
-					foreach ($paises as $value) { ?>
-						<option value="<?php echo $value["p_id"]; ?>"> 
-							<?php echo $value["p_descripcion"]; ?> 
-						</option>
-					<?php }
-				?>
-			</select>
-		</div>
-		<label class="col-md-2 control-label">Ciudad Huesped</label>
-		<div class="col-md-4">
-			<select class="form-control" name="ciudad" id="ciudad" required="true">
-				<option value="">Seleccione Ciudad</option>
-			</select>
-		</div>
-	</div>
-	<div class="form-group">
 		<label class="col-md-1 control-label">Dir. <i class="fa fa-map-marker"></i></label>
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<div class="iconic-input">
 				<input type="text" class="form-control" name="direccion" id="direccion" maxlength="100" required>
+			</div>
+		</div>
+		<label class="col-md-1 control-label">Correo.</label>
+			<div class="col-md-3">
+				<div class="iconic-input">
+					<input type="email" class="form-control" name="email" id="email" maxlength="100" required>
+				</div>
+			</div>
+		</div>
+		<!--probando pais -->
+		<div class="form-group">
+			<label class="col-lg-1" id="name">Pais</label>
+			<div class="col-lg-5">
+				<div class="input-group ">
+					<select class="form-control" name="pais" id="pais" required="true" onchange="traerciudad()">
+						<option value="">Seleccione</option>
+						<?php 
+							foreach ($paises as $value) { ?>
+								<option value="<?php echo $value["p_id"]; ?>"> 
+									<?php echo $value["p_descripcion"]; ?> 
+								</option>
+							<?php }
+						?>
+					</select>
+					<span style="cursor:pointer" class="input-group-addon" onclick="agregarpais()"><i class="fa fa-plus"></i></span>
+				</div>
+			</div>
+			<label class="col-lg-1 control-label" id="name">Ciudad</label>
+			<div class="col-lg-5">
+				<div class="input-group">
+					<select class="form-control" name="ciudad" id="ciudad" required="true">
+						<option value="">Seleccione Ciudad</option>
+					</select>
+					<span style="cursor:pointer" class="input-group-addon" onclick="agregarciudad()"><i class="fa fa-plus"></i></span>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -137,6 +137,7 @@ function modificar(id){
 					$("#nombres").val(datos[0]["h_nombres"]);
 					$("#direccion").val(datos[0]["h_direccion"]);
 					$("#celular").val(datos[0]["h_celular"]);
+					$("#email").val(datos[0]["email"]);
 					$("#tipo_documento").val(datos[0]["h_tipodocumento"]);
 					$("#pais").val(datos[0]["p_id"]); traerciudad(datos[0]["h_nacionalidad"]); tipodoc();
 				}
@@ -169,4 +170,77 @@ function eliminar(){
 function alerta_hide(){
 	$("#alerta").css('display','block');
 	setTimeout(function() { $("#alerta").css('display','none'); }, 1700);
+}
+function agregarpais(){
+	$('#des_pais').val(""); $("#botonpais").removeAttr("disabled");
+    	$("#agregarpais").modal("show");
+}
+function agregarciudad(){
+	$.ajax({
+    	    	url:url_base,
+		data:'accion=11&lista=1',
+		type:'post',
+        	success: function(data) {
+            	$("#pais_id").empty().html(data);
+            	$('#des_ciudad').val(""); $("#pais_id").val($("#pais").val()); $("#botonciudad").removeAttr("disabled");
+    			$("#agregarciudad").modal("show");
+        	}
+    	});
+}
+function guardar_ciudad() {
+	$.ajax({
+		url:url_base,
+		data:'accion=12&'+$("#form_ciudad").serialize(),
+		type:'post',
+		success: function(data) {
+			if (data==1) {
+				alert("INGRESE OTRA CIUDAD ... YA EXISTE");
+			}else{
+				if ($('#des_ciudad').val().trim() === '') {
+					$('#des_ciudad').val(""); $('#des_ciudad').focus();
+				     	alert("DEBE INGRESAR NOMBRE DE CIUDAD"); return false;
+				}
+				$("#botonciudad").attr("disabled","true");
+				$.ajax({
+					url:url_base,
+					data:'accion=13&'+$("#form_ciudad").serialize(),
+					type:'post',
+					success: function(data) {
+						$("#ciudad").empty().html(data); $("#pais").val($("#pais_id").val());
+						$("#agregarciudad").modal("hide"); return false;
+					}
+				}); return false;
+			}
+		}
+	});  return false;
+}
+function guardar_pais() {
+	$.ajax({
+		url:url_base,
+		data:'accion=10&'+$("#form_pais").serialize(),
+		type:'post',
+		success: function(data) {
+			if (data==1) {
+				alert("INGRESE OTRO PAIS ... YA EXISTE");
+			}else{
+				if ($('#des_pais').val().trim() === '') {
+					$('#des_pais').val(""); $('#des_pais').focus();
+				     	alert("DEBE INGRESAR NOMBRE DEL PAIS"); return false;
+				}
+				$("#botonpais").attr("disabled","true");
+				$.ajax({
+					url:url_base,
+					data:'accion=11&'+$("#form_pais").serialize(),
+					type:'post',
+					success: function(data) {
+						alert("veda");
+						$("#pais").empty().html(data); traerciudad();
+						$("#agregarpais").modal("hide"); 
+						return false;
+					}
+				}); return false;
+				alert("no veda");
+			}
+		}
+	});  return false;
 }

@@ -42,6 +42,68 @@
 					</div>
 				</div>
 			</div>
+			<!-- Para agregar pais-->
+			<div class="modal fade" tabindex="-1" role="dialog" id="agregarpais">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Agregar Pais </h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" id="form_pais" onsubmit="return guardar_pais()">
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Descripcion</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" placeholder="Nombre pais" name="des_pais" id="des_pais" required="true" maxlength="100">
+										</div>
+									</div>
+									<div style="height:1px;background:#f2f2f2;"></div>
+									<div class="form-group">
+										<center>
+											<button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar</button>
+											<button class="btn btn-success" type="submit" id="botonpais">Guardar</button>
+										</center>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Para agregar ciudad-->
+				<div class="modal fade" tabindex="-1" role="dialog" id="agregarciudad">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Agregar Ciudad </h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" id="form_ciudad" onsubmit="return guardar_ciudad()">
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Descripcion</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" placeholder="Nombre ciudad" name="des_ciudad" id="des_ciudad" required="true" maxlength="100">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Pais</label>
+										<div class="col-lg-10">
+											<select class="form-control" name="pais_id" id="pais_id"> </select>
+										</div>
+									</div>
+									<div style="height:1px;background:#f2f2f2;"></div>
+									<div class="form-group">
+										<center>
+											<button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar</button>
+											<button class="btn btn-success" type="submit" id="botonciudad">Guardar</button>
+										</center>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<?php include("../views/layout/footer.php"); ?>
 		</div>
@@ -56,5 +118,8 @@
                 	var form = ["id","nombres","tipo"];
        	</script>
        	<script src="../public/app/huesped.js"></script>
+		
+		   
+	                	
 	</body>
 </html>

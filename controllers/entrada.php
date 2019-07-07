@@ -113,7 +113,7 @@
                 	echo $dias;
 		}
 		if ($_POST["accion"]==16) {
-			$sql = "select entrada.*,habitacion.h_nro,habitacion.h_precio,huesped.h_nombres,empleado.e_nombres from entrada inner join huesped on(entrada.e_huesped=huesped.h_id) inner join habitacion on(entrada.e_habitacion=habitacion.h_id) inner join empleado on(entrada.e_empleado=empleado.e_id) where entrada.e_id=".$_POST["id"];
+			$sql = "select entrada.*,habitacion.h_nro,habitacion.h_precio,huesped.h_nombres,empleado.e_nombres from entrada inner join huesped on(entrada.e_huesped=huesped.h_id) inner join habitacion on(entrada.e_habitacion=habitacion.h_id) inner join empleado on(entrada.e_empleado=empleado.e_id) where habitacion.h_id=".$_POST["id"]." and entrada.e_estado=1";
 			$data = $table->infosql($sql);
 			$html = "<table width='100%'>";
 			foreach ($data as $value) {
@@ -129,9 +129,14 @@
 			$html .= "</table>";
 			$html .= "<center><h4>Lista de servicios</h4></center>";
 
-			$sql = "select *from servicio inner join tipo_servicio on(servicio.s_tiposervicio=tipo_servicio.ts_id) where servicio.s_entrada=".$_POST["id"];
+			$sql = "select entrada.e_id from entrada inner join huesped on(entrada.e_huesped=huesped.h_id) inner join habitacion on(entrada.e_habitacion=habitacion.h_id) inner join empleado on(entrada.e_empleado=empleado.e_id) where habitacion.h_id=".$_POST["id"]." and entrada.e_estado=1";
 			$data = $table->infosql($sql);
-
+			foreach ($data as $key) {
+				$temp=$key['e_id'];
+			}
+			$sql = "select *from servicio inner join tipo_servicio on(servicio.s_tiposervicio=tipo_servicio.ts_id) where servicio.s_entrada=".$temp;
+			$data = $table->infosql($sql);
+			
 			$html .= "<table class='table table-bordered table-condensed'>";
 			$html .= "<tr> <th>Descripcion</th> <th>Precio Servicio</th> </tr>";
 			if (count($data)==0) {
@@ -153,6 +158,14 @@
 			$sql = "insert into servicio(s_entrada,s_tiposervicio,s_total) values('".$_POST["entra_id"]."',".$_POST["servicio_id"].",'".$_POST["precio_servicio"]."')";
 			$data = $table->insertar($sql);
 			echo $data;
+		}
+		if ($_POST["accion"]==18) {
+			$sql = "select entrada.e_id from entrada inner join huesped on(entrada.e_huesped=huesped.h_id) inner join habitacion on(entrada.e_habitacion=habitacion.h_id) inner join empleado on(entrada.e_empleado=empleado.e_id) where habitacion.h_id=".$_POST["id"]." and entrada.e_estado=1";
+			$data = $table->infosql($sql);
+			foreach ($data as $key) {
+				$temp=$key['e_id'];
+			}
+			echo $temp;
 		}
 	}else{
 		$servicios = $table->infosql("select *from tipo_servicio where ts_estado=1");

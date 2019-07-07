@@ -63,7 +63,6 @@
 							</div>
 							<div class="modal-body">
 								<form class="form-horizontal" id="form_servicio" onsubmit="return guardar_servicio()">
-									<input type="hidden" name="entra_id" id="entra_id">
 									<div class="form-group">
 										<label class="col-lg-3 control-label">Servicio</label>
 										<div class="col-lg-8">
@@ -76,6 +75,7 @@
 												?>
 											</select>
 										</div>
+										<input type="hidden" name="entra_id" id="entra_id">
 									</div>
 									<div class="form-group">
 										<label class="col-lg-3 control-label">S/. Precio</label>
@@ -91,6 +91,7 @@
 										</center>
 									</div>
 								</form>
+								
 							</div>
 						</div>
 					</div>

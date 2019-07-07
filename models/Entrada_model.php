@@ -47,8 +47,8 @@
 
 				$info=array();
 				while( $datos = $query->fetch()){
-	    				$info[]=$datos;	
-	    			}
+					$info[]=$datos;	
+				}
 				return $info;		
 			}catch(PDOException $e){
 				print "Error!: " . $e->getMessage();	
@@ -58,7 +58,8 @@
 		public function insertar($sql){	
 			try {
 				$query = $this->dbh->prepare($sql);
-				$query->execute(); return '1';		
+				$query->execute(); 
+				return '1';		
 			}catch(PDOException $e){
 				print "Error!: " . $e->getMessage();	
 			}				
@@ -107,8 +108,11 @@
 				$sql = "insert into entrada(e_huesped,e_empleado,e_habitacion,e_ciudad,e_fechaini,e_fechafin,e_dias,e_total) values(
 					'".$huesped."',
 					'".$_SESSION['idusuario']."',
-					'".$_POST["habitacion"]."',0,
-					'".$_POST["fechaini"]."','".$_POST["fechafin"]."','".$_POST["dias"]."',
+					'".$_POST["habitacion"]."',
+					'".$_POST["ciudad"]."',
+					'".$_POST["fechaini"]."',
+					'".$_POST["fechafin"]."',
+					'".$_POST["dias"]."',
 					'".$_POST["total"]."'
 				)";
 				$query = $this->dbh->prepare($sql);

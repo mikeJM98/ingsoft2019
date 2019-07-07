@@ -234,7 +234,7 @@ function guardar(){
 		type:'post',
 		success: function(data) {
 			if (data==1) {
-				$("#alerta_text").text(tabla.toUpperCase()+' REGISTRADO');
+				$("#alerta_text").text(tabla.toUpperCase()+' REGISTRADO CORRECTAMENTE');
 			}else{
 				$("#alerta_text").text('Ocurrió Un Error! Comunica Este Error');
 			}
@@ -264,10 +264,10 @@ function eliminar(){
 	});
 }
 
-function infoentrada(id){
+function infoentrada(ver){
 	$.ajax({
 		url:url_base,
-		data:'accion=16&id='+id,
+		data:'accion=16&id='+ver,
 		type:'post',
 		success: function(data) {
 			$("#info_conten").empty().html(data);
@@ -276,10 +276,17 @@ function infoentrada(id){
 	});
 }
 
-function agregar_servicio(id){
-	$("#entra_id").val(id); $("#precio_servicio").val(""); $("#servicio_id").val("");
-	$("#botonservicio").removeAttr("disabled");
-	$("#agregar_servicio").modal("show");
+function agregar_servicio(id_e){
+	$.ajax({
+		url:url_base,
+		data:'accion=18&id='+id_e,
+		type:'post',
+		success: function(data) {
+			$("#entra_id").val(data); $("#precio_servicio").val(""); $("#servicio_id").val("");
+			$("#botonservicio").removeAttr("disabled");
+			$("#agregar_servicio").modal("show");
+		}
+	});
 }
 
 function guardar_servicio() {
@@ -289,7 +296,7 @@ function guardar_servicio() {
 		data:'accion=17&'+$("#form_servicio").serialize(),
 		type:'post',
 		success: function(data) {
-			alert("SERVICIO AGREGADO CORRECTAMENTE A ESTA ESTADIA");
+			console.log("SERVICIO AGREGADO CORRECTAMENTE A ESTA ESTADIA");
 			$("#agregar_servicio").modal("hide");
 		}
 	});  return false;

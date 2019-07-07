@@ -62,14 +62,15 @@
 		public function guardar(){	
 			try {	
 				if($_POST["id"]==""){
-					$sql = "insert into huesped(h_tipodocumento,h_nacionalidad,h_documento,h_nombres,h_direccion,h_celular,h_fechareg) values(
+					$sql = "insert into huesped(h_tipodocumento,h_nacionalidad,h_documento,h_nombres,h_direccion,h_celular,h_fechareg,email) values(
 						'".$_POST["tipo_documento"]."',
 						'".$_POST["ciudad"]."',
 						'".$_POST["dni"]."',
 						'".$_POST["nombres"]."',
 						'".$_POST["direccion"]."',
 						'".$_POST["celular"]."',
-						'".date('Y-m-d')."'
+						'".date('Y-m-d')."',
+						'".$_POST["email"]."'
 					)";
 				}else{
 					$sql = "update huesped set 
@@ -78,13 +79,22 @@
 						h_documento='".$_POST["dni"]."',
 						h_nombres='".$_POST["nombres"]."',
 						h_direccion='".$_POST["direccion"]."',
-						h_celular='".$_POST["celular"]."'
+						h_celular='".$_POST["celular"]."',
+						email='".$_POST["email"]."'
 					where h_id=".$_POST["id"];
 				}
 				$query = $this->dbh->prepare($sql);
 				$query->execute(); $this->dbh = null; return 1;
 			}catch(PDOException $e){
 				print "Error en la base de datos:" . $e->getMessage();	
+			}				
+		}
+		public function insertar($sql){	
+			try {
+				$query = $this->dbh->prepare($sql);
+				$query->execute(); return '1';		
+			}catch(PDOException $e){
+				print "Error!: " . $e->getMessage();	
 			}				
 		}
 		public function info($id){

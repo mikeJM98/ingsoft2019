@@ -32,7 +32,7 @@
 						}
 					}
 					$usuario = $var->Login_usuario($usuario,$password);
-					if ($usuario==true) {
+					if ($usuario) {
 						$sql = "select m.m_descripcion, te.te_descripcion FROM permisos p, modulos m, tipo_empleado te where (p.m_id=m.m_id and p.m_tipo_usuario=te.te_id) and te.te_id=".$_SESSION['perfil'];
 						$msg=pdo($sql);
 						print_r($msg);
@@ -47,7 +47,7 @@
 						}
 						$_SESSION['modulos']=$modulos;
 						$_SESSION['perfil']=$msg[0]['te_descripcion'];
-						header("Location: ../controllers/entrada.php");
+						header("Location: entrada.php");
 						#require_once(".../controllers/entrada.php");
 												
 					}else{

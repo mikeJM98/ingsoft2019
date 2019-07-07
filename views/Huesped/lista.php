@@ -9,6 +9,7 @@
 			<th>Direccion</th>
 			<th>Nacionalidad</th>
 			<th>Celular</th>
+			<th>Correo</th>
 			<th>Acción</th>
 		</tr>
 	</thead>
@@ -21,6 +22,7 @@
 					<td><?php echo $value["h_direccion"]; ?></td>
 					<td><?php echo $value["p_descripcion"].' - '.$value["c_descripcion"]; ?></td>
 					<td><?php echo $value["h_celular"]; ?></td>
+					<td><?php echo $value["email"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-warning btn-xs" onclick="modificar('<?php echo $value["h_id"]; ?>')">
 							<i class="fa fa-edit"></i> Editar

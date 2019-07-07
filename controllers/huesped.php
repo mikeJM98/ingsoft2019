@@ -2,6 +2,7 @@
 	require_once '../models/Base_model.php';
 	$base = Base_model::conectar();
 	require_once '../models/Huesped_model.php';
+	require_once '../models/Entrada_model.php';
 	$table = Huesped_model::conectar();
 
 	if(isset($_POST['accion'])){
@@ -40,6 +41,49 @@
 		}
 		if ($_POST["accion"]==7) {
 			$sql = "select *from ciudad where c_estado=1 and c_id>0 and c_pais=".$_POST["pais"];
+			$data = $table->infosql($sql);
+			$html = "<option value=''>Seleccione Ciudad</option>";
+			foreach ($data as $value) {
+				$html .= "<option value='".$value["c_id"]."'>".$value["c_descripcion"]."</option>";
+			}
+			echo $html;
+		}
+		if ($_POST["accion"]==10) {
+			$data = $base->buscar("select *from pais where p_estado=1 and upper(p_descripcion)=upper('".$_POST["des_pais"]."')");
+			if (count($data)==0) {
+				echo "0";
+			}else{
+				echo "1";
+			}
+		}
+		if ($_POST["accion"]==11) {
+			if (isset($_POST['lista'])) {
+			}else{
+				$sql = "insert into pais(p_descripcion) values('".$_POST["des_pais"]."')";
+				$data = $table->insertar($sql);
+			}
+
+			$sql = "select *from pais where p_estado=1";
+			$data = $table->infosql($sql);
+			$html = "<option value=''>Seleccione</option>";
+			foreach ($data as $value) {
+				$html .= "<option value='".$value["p_id"]."'>".$value["p_descripcion"]."</option>";
+			}
+			echo $html;
+		}
+		if ($_POST["accion"]==12) {
+			$data = $base->buscar("select *from ciudad where c_estado=1 and c_pais=".(int)($_POST["pais_id"])." and upper(c_descripcion)=upper('".$_POST["des_ciudad"]."')");
+			if (count($data)==0) {
+				echo "0";
+			}else{
+				echo "1";
+			}
+		}
+		if ($_POST["accion"]==13) {
+			$sql = "insert into ciudad(c_descripcion,c_pais) values('".$_POST["des_ciudad"]."','".$_POST["pais_id"]."')";
+			$data = $table->insertar($sql);
+
+			$sql = "select *from ciudad where c_estado=1 and c_id>0 and c_pais=".$_POST["pais_id"];
 			$data = $table->infosql($sql);
 			$html = "<option value=''>Seleccione Ciudad</option>";
 			foreach ($data as $value) {
