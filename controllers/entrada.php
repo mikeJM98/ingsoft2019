@@ -116,6 +116,7 @@
 			$sql = "select entrada.*,habitacion.h_nro,habitacion.h_precio,huesped.h_nombres,empleado.e_nombres from entrada inner join huesped on(entrada.e_huesped=huesped.h_id) inner join habitacion on(entrada.e_habitacion=habitacion.h_id) inner join empleado on(entrada.e_empleado=empleado.e_id) where habitacion.h_id=".$_POST["id"]." and entrada.e_estado=1";
 			$data = $table->infosql($sql);
 			$html = "<table width='100%'>";
+			$total=0;
 			foreach ($data as $value) {
 				$html .= "<tr>";
 				$html .= "<td> <b> Nombre Huesped : </b>".$value["h_nombres"]."</td>";
@@ -125,6 +126,7 @@
 				$html .= "<td> <b> Fecha Inicio : </b>".$value["e_fechaini"]."</td>";
 				$html .= "<td> <b> Fecha Fin : </b>".$value["e_fechafin"]."</td>";
 				$html .= "</tr>";
+				$total +=$value["e_total"];
 			}
 			$html .= "</table>";
 			$html .= "<center><h4>Lista de servicios</h4></center>";
@@ -134,7 +136,7 @@
 			foreach ($data as $key) {
 				$temp=$key['e_id'];
 			}
-			$sql = "select *from servicio inner join tipo_servicio on(servicio.s_tiposervicio=tipo_servicio.ts_id) where servicio.s_entrada=".$temp;
+			$sql = "select tipo_servicio.ts_descripcion, sum(servicio.s_total) as s_total from servicio inner join tipo_servicio on(servicio.s_tiposervicio=tipo_servicio.ts_id) where servicio.s_entrada=".$temp." group by ts_descripcion";
 			$data = $table->infosql($sql);
 			
 			$html .= "<table class='table table-bordered table-condensed'>";
@@ -147,8 +149,16 @@
 					$html .= "<td> <b>".$value["ts_descripcion"]." </b></td>";
 					$html .= "<td> <b> S/.Costo Servicio : ".$value["s_total"]." soles. </b> </td>";
 					$html .= "</tr>";
+					$total +=$value["s_total"];
 				}
 			}
+			$html .= "</table> <br>";
+
+			$html .= "<table class='table table-bordered table-condensed'>";
+			$html .= "<tr>";
+			$html .= "<td> <b>Total a pagar</b></td>";
+			$html .= "<td> <b> S/. ".$total." soles. </b> </td>";
+			$html .= "</tr>";
 			$html .= "</table> <br>";
 			$html .= '<center> <button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar Info.</button> </center>';
 

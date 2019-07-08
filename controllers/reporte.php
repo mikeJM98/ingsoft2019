@@ -12,7 +12,7 @@
 			$sql = "select *from reserva inner join cliente on(reserva.r_cliente=cliente.c_id) where reserva.r_estado=1 and reserva.r_fecha>='".$_GET['rango1']."' and r_fecha<='".$_GET['rango2']."' ";
 			$lista = $table->listar($sql);
 
-			$html = '<h3>REPORTE DE RESERVAS --- HOTEL TARAPOTO</h3>';
+			$html = '<h3>REPORTE DE RESERVAS --- HPFV</h3>';
         		$html = $html.'<table border="1" width="100%" >';
             	$html = $html.'<tr>';
             	$html = $html.'<th>Nro</th> <th>Fecha reserva</th> <th>Cliente</th> <th>Empleado</th>';
@@ -58,22 +58,25 @@
 			$sql = "select entrada.*,habitacion.h_nro,habitacion.h_precio,huesped.h_nombres,empleado.e_nombres from entrada inner join huesped on(entrada.e_huesped=huesped.h_id) inner join habitacion on(entrada.e_habitacion=habitacion.h_id) inner join empleado on(entrada.e_empleado=empleado.e_id) where entrada.e_fechaini>='".$_GET['rango1']."' and e_fechaini<='".$_GET['rango2']."' ";
 			$lista = $table->listar($sql);
 
-			$html = '<h3>REPORTE DE ENTRADAS --- HOTEL TARAPOTO</h3>';
+			$html = '<h3>REPORTE DE ENTRADAS --- HPFV</h3>';
         		$html = $html.'<table border="1" width="100%" >';
             	$html = $html.'<tr>';
-            	$html = $html.'<th>Nro</th> <th>Fecha inicio</th> <th>Fecha fin</th> <th>Nro Hab.</th> <th>Precio</th> <th>Cliente</th> <th>Empleado</th>';
-            	$html = $html.'</tr>';
+            	$html = $html.'<th>Nro</th> <th>Fecha inicio</th> <th>Fecha fin</th> <th>Nro Hab.</th> <th>Cliente</th> <th>Empleado</th> <th>Precio</th>';
+				$html = $html.'</tr>';
+				$total=0;
 			foreach ($lista as $value) {
 				$html = $html.'<tr>';
 				$html = $html.'<td>'.$value["e_id"].'</td>';
 				$html = $html.'<td>'.$value["e_fechaini"].'</td>';
 				$html = $html.'<td>'.$value["e_fechafin"].'</td>';
 				$html = $html.'<td>'.$value["h_nro"].'</td>';
-				$html = $html.'<td>'.$value["h_precio"].'</td>';
 				$html = $html.'<td>'.$value["h_nombres"].'</td>';
 				$html = $html.'<td>'.$value["e_nombres"].'</td>';
+				$html = $html.'<td>'.$value["h_precio"].'</td>';
 				$html = $html.'</tr>';
+				$total +=$value["h_precio"];
 			}
+				$html .="<tr><td></td><td></td><td></td><td></td><td></td><td>Total</td><td>$total</td></tr>";
         		$html = $html.'</table>';
 
 			require_once '../public/tcpdf/tcpdf.php';
