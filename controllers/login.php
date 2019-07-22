@@ -35,7 +35,6 @@
 					if ($usuario) {
 						$sql = "select m.m_descripcion, te.te_descripcion FROM permisos p, modulos m, tipo_empleado te where (p.m_id=m.m_id and p.m_tipo_usuario=te.te_id) and te.te_id=".$_SESSION['perfil'];
 						$msg=pdo($sql);
-						print_r($msg);
 						$modulos=array();
 						foreach ($msg as $key) {
 							foreach ($key as $k => $v) {

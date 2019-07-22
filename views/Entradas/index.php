@@ -26,13 +26,33 @@
 			      	</div>
 			    	</section>
 
-			    	<div class="modal fade" tabindex="-1" role="dialog" id="confirmar">
+			    <div class="modal fade" tabindex="-1" role="dialog" id="detalle_habitacion">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<div class="text-center">
+									<h4 class="modal-title">Detalles de la Habitacion</h4>
+								</div>
+							</div>
+							<div class="modal-body">
+								<div id="detalle"> </div>
+								<br>
+								<center>
+									<button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar</button>
+									<button class="btn btn-success" type="button" data-dismiss="modal"  onclick="nuevo()">Registrar Estadia</button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" tabindex="-1" role="dialog" id="confirmar">
 					<div class="modal-dialog modal-sm">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title">Seguro que desea terminar estadia?</h4>
 							</div>
 							<div class="modal-body">
+							<div class="modal-body" id="ticket"> </div>
 								<center>
 									<button data-dismiss="modal" class="btn btn-danger" type="button">No, Cerrar</button>
 									<button class="btn btn-success" type="button" onclick="eliminar()">Si, Terminar</button>
@@ -47,9 +67,16 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h4 class="modal-title">Informacion de la entrada - HPFV</h4>
+								<div class="text-center">
+								<h1 class="modal-title">HOSPEDAJE FLOR DEL VALLE</h1>
+								</div>
+								<h4 class="">Factura simplificada / ticket</h4>
 							</div>
 							<div class="modal-body" id="info_conten"> </div>
+							<center>
+								<button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar Info.</button>
+							</center>'
+
 						</div>
 					</div>
 				</div>
@@ -159,7 +186,39 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			<!-- Para agregar detalles_habitaciones-->
+				<div class="modal fade" tabindex="-1" role="dialog" id="detalles_habitacion">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Agregar Ciudad </h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" id="form_ciudad" onsubmit="return guardar_ciudad()">
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Descripcion</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" placeholder="Nombre ciudad" name="des_ciudad" id="des_ciudad" required="true" maxlength="100">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Pais</label>
+										<div class="col-lg-10">
+											<select class="form-control" name="pais_id" id="pais_id"> </select>
+										</div>
+									</div>
+									<div style="height:1px;background:#f2f2f2;"></div>
+									<div class="form-group">
+										<center>
+											<button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar</button>
+											<button class="btn btn-success" type="submit" id="botonciudad">Guardar</button>
+										</center>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 
 			<?php include("../views/layout/footer.php"); ?>
 		</div>

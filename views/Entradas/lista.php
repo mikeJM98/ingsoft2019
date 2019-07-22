@@ -22,13 +22,13 @@
 			} ?>
 			<div class="col-md-3">
 				<div class="box box-<?php echo $color;?>">
-					<div class="box-header with-border" align="center">
+					<div class="box-header with-border" allign="center">
 						<h3 class="box-title">Habitacion Nro: <?php echo $value["h_nro"]?></h3>
 						<p><?php echo $value["th_descripcion"]; ?></p>
 						<?php 
 							if ($value["h_estado"]==1) { ?>
 								<h3 class="box-title" style="color: <?php echo $letra;?>; font-weight: bold;">HAB. LIBRE</h3><br><br>
-								<button type="button" class="btn btn-success">Precio S/. <?php echo $value["h_precio"];?></button>
+								<button type="button" class="btn btn-success" onclick="detalle_habitacion(<?php echo $value['h_tipohabitacion'];?>)">Precio S/. <?php echo $value["h_precio"];?></button>
 							<?php }else{
 								if ($value["h_estado"]==2) { ?>
 									<h3 class="box-title" style="color: <?php echo $letra;?>; font-weight: bold;">OCUPADA</h3><br><br>

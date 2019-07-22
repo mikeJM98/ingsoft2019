@@ -120,11 +120,15 @@
 			foreach ($data as $value) {
 				$html .= "<tr>";
 				$html .= "<td> <b> Nombre Huesped : </b>".$value["h_nombres"]."</td>";
-				$html .= "<td> <b> S/.Total Estadia : </b>".$value["e_total"]." soles.</td>";
 				$html .= "</tr>";
 				$html .= "<tr>";
 				$html .= "<td> <b> Fecha Inicio : </b>".$value["e_fechaini"]."</td>";
+				$html .= "</tr>";
+				$html .= "<tr>";
 				$html .= "<td> <b> Fecha Fin : </b>".$value["e_fechafin"]."</td>";
+				$html .= "</tr>";
+				$html .= "<tr>";
+				$html .= "<td> <b> Nombre Vendedor : </b>".$_SESSION["usuario"]."</td>";
 				$html .= "</tr>";
 				$total +=$value["e_total"];
 			}
@@ -140,27 +144,35 @@
 			$data = $table->infosql($sql);
 			
 			$html .= "<table class='table table-bordered table-condensed'>";
-			$html .= "<tr> <th>Descripcion</th> <th>Precio Servicio</th> </tr>";
+			$html .= "<tr> <th>Producto</th> <th>Precio</th> <th>Cantidad</th> <th>total</th> </tr>";
+			$html .= "<tr>";
+			$html .= "<td> Habitacion"."</td>";
+			$html .= "<td>".$value["e_total"]."</td>";
+			$html .= "<td>1</td>";
+			$html .= "<td>".$value["e_total"]."</td>";
+			$html .= "</tr>";
 			if (count($data)==0) {
-				$html .= "<tr> <td coldspan colspan='2'> <b> Sin Servicios Esta Estadia </b></td> </tr>";
+				#$html .= "<tr> <td coldspan colspan='2'> <b> Sin Servicios Esta Estadia </b></td> </tr>";
 			}else{
 				foreach ($data as $value) {
 					$html .= "<tr>";
-					$html .= "<td> <b>".$value["ts_descripcion"]." </b></td>";
-					$html .= "<td> <b> S/.Costo Servicio : ".$value["s_total"]." soles. </b> </td>";
+					$html .= "<td>".$value["ts_descripcion"]."</td>";
+					$html .= "<td> ".$value["s_total"]."</td>";
+					$html .= "<td>1</td>";
+					$html .= "<td> ".$value["s_total"]."</td>";
 					$html .= "</tr>";
 					$total +=$value["s_total"];
 				}
 			}
-			$html .= "</table> <br>";
-
-			$html .= "<table class='table table-bordered table-condensed'>";
 			$html .= "<tr>";
-			$html .= "<td> <b>Total a pagar</b></td>";
-			$html .= "<td> <b> S/. ".$total." soles. </b> </td>";
+			$html .= "<td>";
+			$html .= "</td>";
+			$html .= "<td>";
+			$html .= "</td>";
+			$html .= "<td>Total</td>";
+			$html .= "<td> S/. ".$total."</td>";
 			$html .= "</tr>";
 			$html .= "</table> <br>";
-			$html .= '<center> <button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar Info.</button> </center>';
 
 			echo $html;
 		}
@@ -175,6 +187,21 @@
 			foreach ($data as $key) {
 				$temp=$key['e_id'];
 			}
+			echo $temp;
+		}
+		if ($_POST['accion']==19) {
+			$sql = "select * from detalle_tipo_habitacion where dth_id=".$_POST["id"];
+			$data = $table->infosql($sql);
+			$temp = "<table class='table table-bordered table-condensed'>";
+			$temp .="<tr> <th>#</th> <th>Descripcion</th></tr>";
+			$c=1;
+			foreach ($data as $key) {
+				$temp .="<tr>";
+				$temp .="<td>".$c++."</td>";
+				$temp .="<td>".$key['dth_descripcion']."</td>";
+				$temp .="</tr>";
+			}
+			$temp .= "</table> <br>";
 			echo $temp;
 		}
 	}else{

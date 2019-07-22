@@ -244,8 +244,30 @@ function guardar(){
 }
 
 var idmant = 0;
+function detalle_habitacion(id){
+	$.ajax({
+		url:url_base,
+		data:'accion=19&id='+id,
+		type:'post',
+		success: function(data) {
+			$("#detalle").empty().html(data);
+			$("#detalle_habitacion").modal("show");
+		}
+	});
+	//idmant=id; $("#confirmar").modal("show");
+}
+
 function confirmar(id){
-	idmant=id; $("#confirmar").modal("show");
+	$.ajax({
+		url:url_base,
+		data:'accion=16&id='+id,
+		type:'post',
+		success: function(data) {
+			$("#ticket").empty().html(data);
+			$("#confirmar").modal("show");
+		}
+	});
+	//idmant=id; $("#confirmar").modal("show");
 }
 
 function eliminar(){
