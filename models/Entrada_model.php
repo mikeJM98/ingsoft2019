@@ -154,10 +154,10 @@
 		}
 	    	public function eliminar($id){	
 			try {				
-				$sql = "update habitacion set h_estado=1 where h_id=".$_POST["id"];
+				$sql = "update habitacion set h_estado=1 where h_id=".$id;#_POST["id"];
 				$query = $this->dbh->prepare($sql); $query->execute(); 
 
-				$sql = "update entrada set e_estado=0 where e_habitacion=".$_POST["id"];
+				$sql = "update entrada set e_estado=0 where e_habitacion=".$id;#_POST["id"];
 				$query = $this->dbh->prepare($sql); $query->execute(); 
 
 				$this->dbh = null; return 1;

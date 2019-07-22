@@ -21,8 +21,8 @@
 		}
 
 		if ($_POST["accion"]==4) {
-			$data = $table->eliminar($_POST['id']);
-			echo $data;
+			#$data = $table->eliminar($_POST['id']);
+			#echo $data;
 		}
 		if ($_POST["accion"]==5) {
 			$data = $base->buscar("select *from pais where p_estado=1 and upper(p_descripcion)=upper('".$_POST["des_pais"]."')");

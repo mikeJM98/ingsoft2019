@@ -267,23 +267,19 @@ function confirmar(id){
 			$("#confirmar").modal("show");
 		}
 	});
-	//idmant=id; $("#confirmar").modal("show");
+	idmant=id;
 }
 
 function eliminar(){
-	$.ajax({
-		url:url_base,
-		data:'accion=4&id='+idmant,
-		type:'post',
-		success: function(data) {
-			if (data==1) {
-				$("#alerta_text").text(tabla.toUpperCase()+' TERMINADA');
-			}else{
-				$("#alerta_text").text('Ocurrió Un Error! Comunica Este Error');
-			}
-			$("#confirmar").modal("hide"); alerta_hide(); listado();
+    	var urlcomp = String('http://localhost/ingsoft2019/controllers/ticketentrada.php').split('?');
+    	var urlenvio = urlcomp[0]+'?accion=0&id='+idmant;  	
+		window.open(urlenvio, '_blank'); $("#iframe-reporte").attr("src",urlenvio); 
+		if (urlenvio==1) {
+			$("#alerta_text").text(tabla.toUpperCase()+' TERMINADA');
+		}else{
+			$("#alerta_text").text('Ocurrió Un Error! Comunica Este Error');
 		}
-	});
+		$("#confirmar").modal("hide"); alerta_hide(); listado();
 }
 
 function infoentrada(ver){

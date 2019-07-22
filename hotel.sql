@@ -1,119 +1,144 @@
--- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Linux (x86_64)
 --
--- Host: localhost
--- Generation Time: May 19, 2019 at 06:53 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: hotel
+-- ------------------------------------------------------
+-- Server version	10.1.38-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `hotel`
---
-
--- --------------------------------------------------------
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `categoria`
 --
 
+DROP TABLE IF EXISTS `categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categoria` (
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `c_descripcion` varchar(100) DEFAULT NULL,
-  `c_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `c_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `categoria`
 --
 
-INSERT INTO `categoria` (`c_id`, `c_descripcion`, `c_estado`) VALUES
-(1, 'ARTEFACTOS', 1),
-(2, 'GASEOSA', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `categoria` WRITE;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'ARTEFACTOS',1),(2,'GASEOSA',1);
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `ciudad`
 --
 
+DROP TABLE IF EXISTS `ciudad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ciudad` (
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `c_pais` int(11) DEFAULT NULL,
   `c_descripcion` varchar(100) DEFAULT NULL,
-  `c_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `c_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`c_id`),
+  KEY `pais_fk` (`c_pais`),
+  CONSTRAINT `pais_fk` FOREIGN KEY (`c_pais`) REFERENCES `pais` (`p_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ciudad`
 --
 
-INSERT INTO `ciudad` (`c_id`, `c_pais`, `c_descripcion`, `c_estado`) VALUES
-(0, 1, 'TARAPOTO - SAN MARTIN', 1),
-(8, 8, 'Tarapoto', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `ciudad` WRITE;
+/*!40000 ALTER TABLE `ciudad` DISABLE KEYS */;
+INSERT INTO `ciudad` VALUES (0,1,'TARAPOTO - SAN MARTIN',1),(8,8,'Tarapoto',1),(9,11,'rer',1),(10,1,'wewewe',1),(11,1,'cid2',1),(12,4,'ciudad de la plata',1),(13,5,'bogota',1),(14,6,'quito',1),(15,7,'por',1),(16,2,'santiago',1),(17,3,'buenos aires',1);
+/*!40000 ALTER TABLE `ciudad` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `cliente`
 --
 
+DROP TABLE IF EXISTS `cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente` (
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `c_tipocliente` int(11) DEFAULT NULL,
   `c_dni` varchar(8) DEFAULT NULL,
   `c_nombres` varchar(100) DEFAULT NULL,
   `c_direccion` varchar(200) DEFAULT NULL,
   `c_fechareg` date DEFAULT NULL,
   `c_celular` varchar(15) DEFAULT NULL,
-  `c_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `c_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`c_id`),
+  KEY `tipocliente_fk` (`c_tipocliente`),
+  CONSTRAINT `tipocliente_fk` FOREIGN KEY (`c_tipocliente`) REFERENCES `tipo_cliente` (`tc_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cliente`
 --
 
-INSERT INTO `cliente` (`c_id`, `c_tipocliente`, `c_dni`, `c_nombres`, `c_direccion`, `c_fechareg`, `c_celular`, `c_estado`) VALUES
-(1, 1, '98538458', 'juan morales dfgf', 'Tarapoto', '2017-02-06', '958485857', 1),
-(3, 1, '48515513', 'Juan Miguel Alvarado Julca', 'jr. cesar david 123', '2019-04-24', '927202725', 1),
-(4, 1, '70989910', 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 1),
-(5, 1, '70989910', 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 1),
-(6, 1, '70188345', 'Ricardo salazar Ríos', 'jr. aviación 345', '2019-04-28', '945678754', 1),
-(7, 1, '21212121', 'admin admin', 'dsv sda', '2019-05-19', '1212121211', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,1,'98538458','juan morales dfgf','Tarapoto','2017-02-06','958485857',1),(3,1,'48515513','Juan Miguel Alvarado Julca','jr. cesar david 123','2019-04-24','927202725',1),(4,1,'70989910','Christian Manue Juárez Rivero','jr. cesar david 126','2019-04-27','956908983',1),(5,1,'70989910','Christian Manue Juárez Rivero','jr. cesar david 126','2019-04-27','956908983',1),(6,1,'70188345','Ricardo salazar Ríos','jr. aviación 345','2019-04-28','945678754',1),(7,1,'21212121','admin admin','dsv sda','2019-05-19','1212121211',1),(8,1,'12312312','NUEVO ','343','2019-07-07','1234567899',1);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `consumo`
 --
 
+DROP TABLE IF EXISTS `consumo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `consumo` (
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `c_cliente` int(11) DEFAULT NULL,
   `c_empleado` int(11) DEFAULT NULL,
   `c_fecha` date DEFAULT NULL,
   `c_total` double DEFAULT NULL,
   `c_igv` double DEFAULT NULL,
-  `c_estado` int(11) DEFAULT '1'
+  `c_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`c_id`),
+  KEY `fk_cliente` (`c_cliente`),
+  KEY `fk_empleado` (`c_empleado`),
+  CONSTRAINT `fk_cliente` FOREIGN KEY (`c_cliente`) REFERENCES `cliente` (`c_id`),
+  CONSTRAINT `fk_empleado` FOREIGN KEY (`c_empleado`) REFERENCES `empleado` (`e_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `consumo`
+--
+
+LOCK TABLES `consumo` WRITE;
+/*!40000 ALTER TABLE `consumo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consumo` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `detalle_consumo`
 --
 
+DROP TABLE IF EXISTS `detalle_consumo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detalle_consumo` (
   `dc_consumo` int(11) NOT NULL,
   `dc_producto` int(11) NOT NULL,
@@ -121,36 +146,59 @@ CREATE TABLE `detalle_consumo` (
   `dc_precio_unitario` double DEFAULT NULL,
   `dc_igv` double DEFAULT NULL,
   `dc_monto` double DEFAULT NULL,
-  `dc_estado` int(11) DEFAULT '1'
+  `dc_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`dc_consumo`,`dc_producto`),
+  KEY `fk_producto` (`dc_producto`),
+  CONSTRAINT `fk_consumo` FOREIGN KEY (`dc_consumo`) REFERENCES `consumo` (`c_id`),
+  CONSTRAINT `fk_producto` FOREIGN KEY (`dc_producto`) REFERENCES `producto` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `detalle_consumo`
+--
+
+LOCK TABLES `detalle_consumo` WRITE;
+/*!40000 ALTER TABLE `detalle_consumo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalle_consumo` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `detalle_reserva`
 --
 
+DROP TABLE IF EXISTS `detalle_reserva`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detalle_reserva` (
   `dr_reserva` int(11) NOT NULL,
   `dr_habitacion` int(11) NOT NULL,
   `dr_monto` double DEFAULT NULL,
-  `dr_estado` int(11) DEFAULT '1'
+  `dr_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`dr_reserva`,`dr_habitacion`),
+  KEY `fk_habitacion` (`dr_habitacion`),
+  CONSTRAINT `fk_habitacion` FOREIGN KEY (`dr_habitacion`) REFERENCES `habitacion` (`h_id`),
+  CONSTRAINT `fk_reserva` FOREIGN KEY (`dr_reserva`) REFERENCES `reserva` (`r_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `detalle_reserva`
 --
 
-INSERT INTO `detalle_reserva` (`dr_reserva`, `dr_habitacion`, `dr_monto`, `dr_estado`) VALUES
-(3, 1, 0, 1),
-(4, 1, 0, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `detalle_reserva` WRITE;
+/*!40000 ALTER TABLE `detalle_reserva` DISABLE KEYS */;
+INSERT INTO `detalle_reserva` VALUES (3,1,0,1),(4,1,0,1),(5,3,0,1),(6,6,0,1),(7,7,0,1);
+/*!40000 ALTER TABLE `detalle_reserva` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `detalle_servicio`
 --
 
+DROP TABLE IF EXISTS `detalle_servicio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detalle_servicio` (
   `ds_entrada` int(11) NOT NULL,
   `ds_producto` int(11) NOT NULL,
@@ -158,17 +206,57 @@ CREATE TABLE `detalle_servicio` (
   `ds_precio_unitario` double DEFAULT NULL,
   `ds_igv` double DEFAULT NULL,
   `ds_monto` double DEFAULT NULL,
-  `ds_estado` int(11) DEFAULT '1'
+  `ds_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`ds_entrada`,`ds_producto`),
+  KEY `fk_producto1` (`ds_producto`),
+  CONSTRAINT `fk_entrada1` FOREIGN KEY (`ds_entrada`) REFERENCES `entrada` (`e_id`),
+  CONSTRAINT `fk_producto1` FOREIGN KEY (`ds_producto`) REFERENCES `producto` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `detalle_servicio`
+--
+
+LOCK TABLES `detalle_servicio` WRITE;
+/*!40000 ALTER TABLE `detalle_servicio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalle_servicio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `detalle_tipo_habitacion`
+--
+
+DROP TABLE IF EXISTS `detalle_tipo_habitacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `detalle_tipo_habitacion` (
+  `dth_id` int(11) NOT NULL,
+  `dth_descripcion` varchar(100) DEFAULT NULL,
+  KEY `fk_detalle_tipo_habitacion_1` (`dth_id`),
+  CONSTRAINT `fk_detalle_tipo_habitacion_1` FOREIGN KEY (`dth_id`) REFERENCES `tipo_habitacion` (`th_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detalle_tipo_habitacion`
+--
+
+LOCK TABLES `detalle_tipo_habitacion` WRITE;
+/*!40000 ALTER TABLE `detalle_tipo_habitacion` DISABLE KEYS */;
+INSERT INTO `detalle_tipo_habitacion` VALUES (1,'cama'),(2,'cama de 2 plazas');
+/*!40000 ALTER TABLE `detalle_tipo_habitacion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `empleado`
 --
 
+DROP TABLE IF EXISTS `empleado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `empleado` (
-  `e_id` int(11) NOT NULL,
+  `e_id` int(11) NOT NULL AUTO_INCREMENT,
   `e_dni` varchar(8) DEFAULT NULL,
   `e_nombres` varchar(100) DEFAULT NULL,
   `e_apellidos` varchar(100) DEFAULT NULL,
@@ -180,56 +268,63 @@ CREATE TABLE `empleado` (
   `e_fechareg` date DEFAULT NULL,
   `e_tipoempleado` int(11) NOT NULL,
   `e_estado` int(11) DEFAULT '1',
-  `e_bloqueado` bit(1) DEFAULT b'1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `e_bloqueado` bit(1) DEFAULT b'1',
+  PRIMARY KEY (`e_id`),
+  KEY `tipoempleado_fk1` (`e_tipoempleado`),
+  CONSTRAINT `tipoempleado_fk1` FOREIGN KEY (`e_tipoempleado`) REFERENCES `tipo_empleado` (`te_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `empleado`
 --
 
-INSERT INTO `empleado` (`e_id`, `e_dni`, `e_nombres`, `e_apellidos`, `e_direccion`, `e_usuario`, `e_clave`, `e_celular`, `e_sexo`, `e_fechareg`, `e_tipoempleado`, `e_estado`, `e_bloqueado`) VALUES
-(1, '93589585', 'JUAN', 'ALVARADO', 'TARAPOTO', 'juan', '123', '3894984848', 'MASCULINO', '2017-02-07', 2, 1, b'1'),
-(2, '70989910', 'Christian Manue', 'Juárez Rivero', 'jr. cesar david 126', 'CMJR', '123', '956908983', 'MASCULINO', '2019-04-28', 2, 1, b'1'),
-(3, '49789796', 'sokal', 'sdsdsd', 'jt libre', 'admin', 'admin', '4956568984', 'MASCULINO', '2019-05-02', 1, 1, b'1'),
-(4, '74276597', 'fdf', 'df', 'mfsl,m', 'j', 'j', '9999999999', 'MASCULINO', '2019-05-12', 2, 1, b'1'),
-(5, '11111111', 'qq', 'qqq', '1', 'q', 'q', '1111111111', 'MASCULINO', '2019-05-12', 2, 1, b'0');
-
--- --------------------------------------------------------
+LOCK TABLES `empleado` WRITE;
+/*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
+INSERT INTO `empleado` VALUES (1,'93589585','JUAN','ALVARADO','TARAPOTO','juan','123','3894984848','MASCULINO','2017-02-07',2,1,''),(2,'70989910','Christian Manue','Juárez Rivero','jr. cesar david 126','CMJR','123','956908983','MASCULINO','2019-04-28',2,1,''),(3,'49789796','sokal','sdsdsd','jt libre','admin','admin','4956568984','MASCULINO','2019-05-02',1,1,''),(4,'74276597','fdf','df','mfsl,m','j','j','9999999999','MASCULINO','2019-05-12',2,1,''),(5,'11111111','qq','qqq','1','q','q','1111111111','MASCULINO','2019-05-12',2,1,'\0');
+/*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `enseres`
 --
 
+DROP TABLE IF EXISTS `enseres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `enseres` (
-  `e_id` int(11) NOT NULL,
+  `e_id` int(11) NOT NULL AUTO_INCREMENT,
   `e_categoria` int(11) NOT NULL,
   `e_habitacion` int(11) NOT NULL,
   `e_descripcion` varchar(100) DEFAULT NULL,
-  `e_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `e_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`e_id`),
+  KEY `fk_habitacion1` (`e_habitacion`),
+  KEY `fk_categoria1` (`e_categoria`),
+  CONSTRAINT `fk_categoria1` FOREIGN KEY (`e_categoria`) REFERENCES `categoria` (`c_id`),
+  CONSTRAINT `fk_habitacion1` FOREIGN KEY (`e_habitacion`) REFERENCES `habitacion` (`h_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `enseres`
 --
 
-INSERT INTO `enseres` (`e_id`, `e_categoria`, `e_habitacion`, `e_descripcion`, `e_estado`) VALUES
-(8, 1, 4, 'TELEVISOR LCD', 1),
-(9, 1, 3, 'TELEVISOR LCD', 1),
-(10, 1, 2, 'TELEVISOR LCD', 1),
-(11, 1, 1, 'TELEVISOR LCD', 1),
-(12, 1, 1, 'VENTILADOR', 1),
-(15, 1, 6, 'TELEVISOR LCD', 1),
-(16, 1, 5, 'TELEVISOR LCD', 1),
-(17, 1, 7, 'TELEVISOR LCD', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `enseres` WRITE;
+/*!40000 ALTER TABLE `enseres` DISABLE KEYS */;
+INSERT INTO `enseres` VALUES (8,1,4,'TELEVISOR LCD',1),(9,1,3,'TELEVISOR LCD',1),(10,1,2,'TELEVISOR LCD',1),(15,1,6,'TELEVISOR LCD',1),(16,1,5,'TELEVISOR LCD',1),(17,1,7,'TELEVISOR LCD',1),(18,1,1,'TELEVISOR LCD',1),(19,1,1,'VENTILADOR',1);
+/*!40000 ALTER TABLE `enseres` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `entrada`
 --
 
+DROP TABLE IF EXISTS `entrada`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `entrada` (
-  `e_id` int(11) NOT NULL,
+  `e_id` int(11) NOT NULL AUTO_INCREMENT,
   `e_huesped` int(11) DEFAULT NULL,
   `e_empleado` int(11) DEFAULT NULL,
   `e_habitacion` int(11) DEFAULT NULL,
@@ -238,71 +333,90 @@ CREATE TABLE `entrada` (
   `e_fechafin` date NOT NULL,
   `e_dias` int(11) NOT NULL,
   `e_total` double DEFAULT NULL,
-  `e_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `e_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`e_id`),
+  KEY `fk_huesped` (`e_huesped`),
+  KEY `fk_empleado2` (`e_empleado`),
+  KEY `fk_ciudad1` (`e_ciudad`),
+  KEY `fk_habitacion2` (`e_habitacion`),
+  CONSTRAINT `fk_ciudad1` FOREIGN KEY (`e_ciudad`) REFERENCES `ciudad` (`c_id`),
+  CONSTRAINT `fk_empleado2` FOREIGN KEY (`e_empleado`) REFERENCES `empleado` (`e_id`),
+  CONSTRAINT `fk_habitacion2` FOREIGN KEY (`e_habitacion`) REFERENCES `habitacion` (`h_id`),
+  CONSTRAINT `fk_huesped` FOREIGN KEY (`e_huesped`) REFERENCES `huesped` (`h_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `entrada`
 --
 
-INSERT INTO `entrada` (`e_id`, `e_huesped`, `e_empleado`, `e_habitacion`, `e_ciudad`, `e_fechaini`, `e_fechafin`, `e_dias`, `e_total`, `e_estado`) VALUES
-(1, 3, 1, 3, 0, '2017-02-19', '2017-02-20', 1, 50, 0),
-(7, 7, 1, 7, 0, '2019-04-27', '2019-04-28', 1, 100, 0),
-(8, 7, 1, 1, 0, '2019-04-28', '2019-04-30', 2, 160, 0),
-(9, 7, 1, 3, 0, '2019-04-28', '2019-05-01', 3, 150, 0),
-(10, 8, 1, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0),
-(11, 7, 1, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0),
-(12, 7, 2, 1, 0, '2019-04-28', '2019-04-29', 1, 80, 0),
-(13, 10, 3, 8, 0, '2019-05-19', '2019-05-20', 1, 10, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `entrada` WRITE;
+/*!40000 ALTER TABLE `entrada` DISABLE KEYS */;
+INSERT INTO `entrada` VALUES (1,3,1,3,0,'2017-02-19','2017-02-20',1,50,0),(7,7,1,7,0,'2019-04-27','2019-04-28',1,100,0),(8,7,1,1,0,'2019-04-28','2019-04-30',2,160,0),(9,7,1,3,0,'2019-04-28','2019-05-01',3,150,0),(10,8,1,1,0,'2019-04-28','2019-04-29',1,80,0),(11,7,1,1,0,'2019-04-28','2019-04-29',1,80,0),(12,7,2,1,0,'2019-04-28','2019-04-29',1,80,0),(13,10,3,8,0,'2019-05-19','2019-05-20',1,10,0),(14,9,3,4,0,'2019-05-25','2019-05-26',1,50,0),(15,9,3,3,0,'2019-05-25','2019-05-26',1,50,0),(16,9,3,3,0,'2019-05-25','2019-05-26',1,50,0),(17,18,3,2,0,'2019-07-06','2019-07-10',4,280,0),(18,10,3,8,0,'2019-07-07','2019-07-09',2,20,0),(19,20,3,6,15,'2019-07-07','2019-07-08',1,60,0),(20,14,3,8,10,'2019-07-07','2019-07-08',1,10,0),(21,14,3,7,16,'2019-07-07','2019-07-08',1,100,1),(22,14,3,7,10,'2019-07-07','2019-07-08',1,100,1),(23,21,3,3,11,'2019-07-07','2019-07-08',1,50,0),(24,21,3,8,16,'2019-07-07','2019-07-08',1,10,0),(25,21,3,1,10,'2019-07-07','2019-07-08',1,80,0),(26,13,3,7,17,'2019-07-07','2019-07-08',1,100,1),(27,16,3,5,17,'2019-07-07','2019-07-08',1,60,0),(28,13,3,4,15,'2019-07-07','2019-07-08',1,50,0),(29,14,3,5,10,'2019-07-07','2019-07-31',24,1440,0),(30,22,3,4,14,'2019-07-07','2019-07-09',2,100,0),(31,14,3,1,11,'2019-07-22','2019-07-23',1,80,0);
+/*!40000 ALTER TABLE `entrada` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `fail_sesion`
 --
 
+DROP TABLE IF EXISTS `fail_sesion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fail_sesion` (
   `u_id` int(11) NOT NULL,
   `intentos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `fail_sesion`
+--
+
+LOCK TABLES `fail_sesion` WRITE;
+/*!40000 ALTER TABLE `fail_sesion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fail_sesion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `habitacion`
 --
 
+DROP TABLE IF EXISTS `habitacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `habitacion` (
-  `h_id` int(11) NOT NULL,
+  `h_id` int(11) NOT NULL AUTO_INCREMENT,
   `h_tipohabitacion` int(11) DEFAULT NULL,
   `h_nro` varchar(10) DEFAULT NULL,
   `h_descripcion` varchar(100) DEFAULT NULL,
   `h_precio` double NOT NULL,
-  `h_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `h_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`h_id`),
+  KEY `tipohabitacion_fk` (`h_tipohabitacion`),
+  CONSTRAINT `tipohabitacion_fk` FOREIGN KEY (`h_tipohabitacion`) REFERENCES `tipo_habitacion` (`th_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `habitacion`
 --
 
-INSERT INTO `habitacion` (`h_id`, `h_tipohabitacion`, `h_nro`, `h_descripcion`, `h_precio`, `h_estado`) VALUES
-(1, 1, '100', 'Habitacion nueva', 80, 1),
-(2, 1, '101', 'Habitacion nueva', 70, 1),
-(3, 1, '102', 'Habitacion nueva', 50, 1),
-(4, 1, '103', 'Habitacion nueva', 50, 1),
-(5, 2, '104', 'Habitacion nueva', 60, 1),
-(6, 2, '105', 'Habitacion nueva', 60, 1),
-(7, 2, '106', 'Habitacion nueva', 100, 1),
-(8, 1, '1', 'habitacion numero 1', 10, 2);
-
--- --------------------------------------------------------
+LOCK TABLES `habitacion` WRITE;
+/*!40000 ALTER TABLE `habitacion` DISABLE KEYS */;
+INSERT INTO `habitacion` VALUES (1,1,'111','Habitacion nueva',80,1),(2,1,'101','Habitacion nueva',70,1),(3,1,'102','Habitacion nueva',50,1),(4,1,'103','Habitacion nueva',50,1),(5,2,'104','Habitacion nueva',60,1),(6,2,'105','Habitacion nueva',60,1),(7,2,'106','Habitacion nueva',100,1),(8,1,'1','habitacion numero 1',10,1);
+/*!40000 ALTER TABLE `habitacion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `huesped`
 --
 
+DROP TABLE IF EXISTS `huesped`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `huesped` (
-  `h_id` int(11) NOT NULL,
+  `h_id` int(11) NOT NULL AUTO_INCREMENT,
   `h_tipodocumento` int(11) DEFAULT NULL,
   `h_documento` varchar(11) DEFAULT NULL,
   `h_nacionalidad` int(11) NOT NULL,
@@ -310,656 +424,321 @@ CREATE TABLE `huesped` (
   `h_direccion` varchar(200) DEFAULT NULL,
   `h_fechareg` date DEFAULT NULL,
   `h_celular` varchar(15) DEFAULT NULL,
-  `h_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `h_estado` int(11) DEFAULT '1',
+  `email` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`h_id`),
+  KEY `tipodoc_fk` (`h_tipodocumento`),
+  CONSTRAINT `tipodoc_fk` FOREIGN KEY (`h_tipodocumento`) REFERENCES `tipo_documento` (`td_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `huesped`
 --
 
-INSERT INTO `huesped` (`h_id`, `h_tipodocumento`, `h_documento`, `h_nacionalidad`, `h_nombres`, `h_direccion`, `h_fechareg`, `h_celular`, `h_estado`) VALUES
-(3, 1, '68484885', 1, 'juan martinez', 'sas', '2017-02-19', '123456789', 1),
-(4, 1, '98344444', 5, 'Mario Velarde', 'sasas', '2017-02-22', '123456789', 1),
-(5, 1, '49388475', 6, 'Cristiano Ronaldo', 'asaas', '2017-02-27', '123456789', 1),
-(7, 1, '70989910', 2, 'Christian Manue Juárez Rivero', 'jr. cesar david 126', '2019-04-27', '956908983', 1),
-(8, 1, '48515513', 7, 'Ricardo salazar Ríos', 'HBKHL ', '2019-04-28', '123456789', 1),
-(9, 1, '11111111', 8, 'name lasname', 'strret ', '2019-05-19', '1111111111', 1),
-(10, 1, '74276597', 8, 'name lasname', 'adfbvgf', '2019-05-19', '22222222', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `huesped` WRITE;
+/*!40000 ALTER TABLE `huesped` DISABLE KEYS */;
+INSERT INTO `huesped` VALUES (3,1,'68484885',1,'juan martinez','sas','2017-02-19','123456789',1,'qwe@a'),(4,1,'98344444',5,'Mario Velarde','sasas','2017-02-22','123456789',1,'qwe@a'),(5,1,'49388475',6,'Cristiano Ronaldo','asaas','2017-02-27','123456789',1,'qwe@a'),(7,1,'70989910',2,'Christian Manue Juárez Rivero','jr. cesar david 126','2019-04-27','956908983',1,'qwe@a'),(8,1,'48515513',7,'Ricardo salazar Ríos','HBKHL ','2019-04-28','123456789',1,'qwe@a'),(9,1,'11111111',13,'name lasname','strret ','2019-05-19','1111111111',1,'qwe@a'),(10,1,'74276597',12,'name lasname','adfbvgf','2019-05-19','22222222',1,'swrw@s'),(11,1,'77777777',13,'erty yuiul','dtfyguhijok','2019-05-25','1234567890',1,'qwe@a'),(12,2,'77777777777',11,'erty yuiul','dtfyguhijok','2019-05-25','1234567890',1,'sds@c'),(13,1,'12345678',11,'mbn ghf','dhgfd','2019-07-06','1234567890123',1,'sdm@s'),(14,1,'11114577',10,'name lasname','strret ','2019-07-06','147852369178',1,'s@c.com'),(16,1,'22732878',11,'modmso','msd,m sla dls','2019-07-06','2392839283232',1,'s@c.com'),(17,1,'44444444',11,'ck ','ncx k cks','2019-07-06','2626632637623',1,'m@m.com'),(18,1,'99999999',11,'probando','sdfsvs sds','2019-07-06','7878445454512',1,'sdm@s'),(19,1,'23232323',14,'fsde','rer','2019-07-07','32323232323',1,'df@q'),(20,1,'78965412',15,'qw',NULL,'2019-07-07',NULL,1,NULL),(21,1,'12312312',11,'NUEVO',NULL,'2019-07-07',NULL,1,NULL),(22,1,'23243542',14,'final',NULL,'2019-07-07',NULL,1,NULL);
+/*!40000 ALTER TABLE `huesped` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `modulos`
 --
 
+DROP TABLE IF EXISTS `modulos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `modulos` (
-  `m_id` int(11) NOT NULL,
+  `m_id` int(11) NOT NULL AUTO_INCREMENT,
   `m_descripcion` varchar(20) NOT NULL,
-  `m_estado` bit(1) NOT NULL DEFAULT b'1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `m_estado` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`m_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `modulos`
 --
 
-INSERT INTO `modulos` (`m_id`, `m_descripcion`, `m_estado`) VALUES
-(1, 'usuarios', b'1'),
-(2, 'mantenimiento', b'1'),
-(3, 'reportes', b'1'),
-(4, 'habitaciones', b'1'),
-(5, 'estadias', b'1'),
-(6, 'clientes', b'1');
-
--- --------------------------------------------------------
+LOCK TABLES `modulos` WRITE;
+/*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
+INSERT INTO `modulos` VALUES (1,'usuarios',''),(2,'mantenimiento',''),(3,'reportes',''),(4,'habitaciones',''),(5,'estadias',''),(6,'clientes','');
+/*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `pais`
 --
 
+DROP TABLE IF EXISTS `pais`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pais` (
-  `p_id` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL AUTO_INCREMENT,
   `p_descripcion` varchar(100) DEFAULT NULL,
-  `p_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `p_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`p_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `pais`
 --
 
-INSERT INTO `pais` (`p_id`, `p_descripcion`, `p_estado`) VALUES
-(1, 'PERU', 1),
-(2, 'CHILE', 1),
-(3, 'ARGENTINA', 1),
-(4, 'BRASIL', 1),
-(5, 'COLOMBIA', 1),
-(6, 'ECUADOR', 1),
-(7, 'PORTUGAL', 1),
-(8, 'Perú', 1),
-(9, 'l', 1),
-(10, 'mjkl', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `pais` WRITE;
+/*!40000 ALTER TABLE `pais` DISABLE KEYS */;
+INSERT INTO `pais` VALUES (1,'PERU',1),(2,'CHILE',1),(3,'ARGENTINA',1),(4,'BRASIL',1),(5,'COLOMBIA',1),(6,'ECUADOR',1),(7,'PORTUGAL',1),(8,'Perú.',0),(9,'l',0),(10,'mjkl',0),(11,'r',0),(12,'BRAZIL',0),(13,'f',1);
+/*!40000 ALTER TABLE `pais` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `permisos`
 --
 
+DROP TABLE IF EXISTS `permisos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `permisos` (
   `m_id` int(11) NOT NULL,
-  `m_tipo_usuario` int(11) NOT NULL
+  `m_tipo_usuario` int(11) NOT NULL,
+  KEY `permisos_tipo_usuario` (`m_tipo_usuario`),
+  KEY `permiso_modulos` (`m_id`),
+  CONSTRAINT `permiso_modulos` FOREIGN KEY (`m_id`) REFERENCES `modulos` (`m_id`),
+  CONSTRAINT `permisos_tipo_usuario` FOREIGN KEY (`m_tipo_usuario`) REFERENCES `tipo_empleado` (`te_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `permisos`
 --
 
-INSERT INTO `permisos` (`m_id`, `m_tipo_usuario`) VALUES
-(1, 1),
-(4, 1),
-(2, 1),
-(3, 1),
-(2, 2),
-(4, 2),
-(5, 1),
-(6, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `permisos` WRITE;
+/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (1,1),(4,1),(2,1),(3,1),(2,2),(4,2),(5,1),(6,1);
+/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `producto`
 --
 
+DROP TABLE IF EXISTS `producto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `producto` (
-  `p_id` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL AUTO_INCREMENT,
   `p_categoria` int(11) DEFAULT NULL,
   `p_descripcion` varchar(100) DEFAULT NULL,
   `p_stock` int(11) NOT NULL,
   `p_precio` double NOT NULL,
-  `p_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `p_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`p_id`),
+  KEY `categoria_fk` (`p_categoria`),
+  CONSTRAINT `categoria_fk` FOREIGN KEY (`p_categoria`) REFERENCES `categoria` (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `producto`
 --
 
-INSERT INTO `producto` (`p_id`, `p_categoria`, `p_descripcion`, `p_stock`, `p_precio`, `p_estado`) VALUES
-(1, 2, 'Gaseosa 500 ML', 10, 2.5, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `producto` WRITE;
+/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (1,2,'Gaseosa 500 ML',10,2.5,1);
+/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `reserva`
 --
 
+DROP TABLE IF EXISTS `reserva`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reserva` (
-  `r_id` int(11) NOT NULL,
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
   `r_cliente` int(11) DEFAULT NULL,
   `r_fecha` date DEFAULT NULL,
   `r_total` double DEFAULT NULL,
-  `r_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `r_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`r_id`),
+  KEY `fk_cliente1` (`r_cliente`),
+  CONSTRAINT `fk_cliente1` FOREIGN KEY (`r_cliente`) REFERENCES `cliente` (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `reserva`
 --
 
-INSERT INTO `reserva` (`r_id`, `r_cliente`, `r_fecha`, `r_total`, `r_estado`) VALUES
-(1, 1, '2017-02-19', NULL, 2),
-(2, 4, '2019-04-27', NULL, 2),
-(3, 5, '2019-04-27', NULL, 2),
-(4, 6, '2019-05-02', NULL, 2);
-
--- --------------------------------------------------------
+LOCK TABLES `reserva` WRITE;
+/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
+INSERT INTO `reserva` VALUES (1,1,'2017-02-19',NULL,2),(2,4,'2019-04-27',NULL,2),(3,5,'2019-04-27',NULL,2),(4,6,'2019-05-02',NULL,2),(5,7,'2019-05-25',NULL,2),(6,6,'2019-07-25',NULL,1),(7,6,'2019-07-08',NULL,1);
+/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `servicio`
 --
 
+DROP TABLE IF EXISTS `servicio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicio` (
-  `s_id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL AUTO_INCREMENT,
   `s_entrada` int(11) DEFAULT NULL,
   `s_tiposervicio` int(11) NOT NULL,
   `s_total` double DEFAULT NULL,
-  `s_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `s_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`s_id`),
+  KEY `fk_entrada` (`s_entrada`),
+  CONSTRAINT `fk_entrada` FOREIGN KEY (`s_entrada`) REFERENCES `entrada` (`e_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `servicio`
 --
 
-INSERT INTO `servicio` (`s_id`, `s_entrada`, `s_tiposervicio`, `s_total`, `s_estado`) VALUES
-(1, 1, 1, 10, 1),
-(3, 1, 2, 15, 1),
-(4, 1, 1, 80, 1),
-(5, 7, 1, 67, 1),
-(6, 7, 2, 80, 1),
-(7, 1, 1, 30, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `servicio` WRITE;
+/*!40000 ALTER TABLE `servicio` DISABLE KEYS */;
+INSERT INTO `servicio` VALUES (1,1,1,10,1),(15,8,1,23,1),(16,8,2,44,1),(17,8,1,1,1),(19,1,1,231,1),(25,29,2,45,1),(27,29,1,55,1),(28,29,2,45,1),(29,30,2,432,1),(30,30,1,12,1),(31,30,1,34,1),(32,29,1,3,1),(33,29,2,45,1),(34,29,1,12,1),(35,31,1,12,1);
+/*!40000 ALTER TABLE `servicio` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_cliente`
 --
 
+DROP TABLE IF EXISTS `tipo_cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_cliente` (
-  `tc_id` int(11) NOT NULL,
+  `tc_id` int(11) NOT NULL AUTO_INCREMENT,
   `tc_descripcion` varchar(100) DEFAULT NULL,
-  `tc_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tc_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`tc_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipo_cliente`
 --
 
-INSERT INTO `tipo_cliente` (`tc_id`, `tc_descripcion`, `tc_estado`) VALUES
-(1, 'NORMAL', 1),
-(2, 'EMPRESA', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `tipo_cliente` WRITE;
+/*!40000 ALTER TABLE `tipo_cliente` DISABLE KEYS */;
+INSERT INTO `tipo_cliente` VALUES (1,'NORMAL',1),(2,'EMPRESA',1);
+/*!40000 ALTER TABLE `tipo_cliente` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_documento`
 --
 
+DROP TABLE IF EXISTS `tipo_documento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_documento` (
-  `td_id` int(11) NOT NULL,
+  `td_id` int(11) NOT NULL AUTO_INCREMENT,
   `td_descripcion` varchar(100) DEFAULT NULL,
-  `td_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `td_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`td_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipo_documento`
 --
 
-INSERT INTO `tipo_documento` (`td_id`, `td_descripcion`, `td_estado`) VALUES
-(1, 'DNI', 1),
-(2, 'RUC', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `tipo_documento` WRITE;
+/*!40000 ALTER TABLE `tipo_documento` DISABLE KEYS */;
+INSERT INTO `tipo_documento` VALUES (1,'DNI',1),(2,'RUC',1);
+/*!40000 ALTER TABLE `tipo_documento` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_empleado`
 --
 
+DROP TABLE IF EXISTS `tipo_empleado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_empleado` (
-  `te_id` int(11) NOT NULL,
+  `te_id` int(11) NOT NULL AUTO_INCREMENT,
   `te_descripcion` varchar(100) DEFAULT NULL,
-  `te_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `te_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`te_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipo_empleado`
 --
 
-INSERT INTO `tipo_empleado` (`te_id`, `te_descripcion`, `te_estado`) VALUES
-(1, 'ADMINISTRADOR', 1),
-(2, 'Recepcionista', 1),
-(3, 'Barredor', 0);
-
--- --------------------------------------------------------
+LOCK TABLES `tipo_empleado` WRITE;
+/*!40000 ALTER TABLE `tipo_empleado` DISABLE KEYS */;
+INSERT INTO `tipo_empleado` VALUES (1,'ADMINISTRADOR',1),(2,'Recepcionista',1),(3,'Barredor',0);
+/*!40000 ALTER TABLE `tipo_empleado` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_habitacion`
 --
 
+DROP TABLE IF EXISTS `tipo_habitacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_habitacion` (
-  `th_id` int(11) NOT NULL,
+  `th_id` int(11) NOT NULL AUTO_INCREMENT,
   `th_descripcion` varchar(100) DEFAULT NULL,
-  `th_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `th_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`th_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipo_habitacion`
 --
 
-INSERT INTO `tipo_habitacion` (`th_id`, `th_descripcion`, `th_estado`) VALUES
-(1, 'HABITACION SIMPLE', 1),
-(2, 'HABITACION DOBLE', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `tipo_habitacion` WRITE;
+/*!40000 ALTER TABLE `tipo_habitacion` DISABLE KEYS */;
+INSERT INTO `tipo_habitacion` VALUES (1,'HABITACION SIMPLE',1),(2,'HABITACION DOBLE',1);
+/*!40000 ALTER TABLE `tipo_habitacion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tipo_servicio`
 --
 
+DROP TABLE IF EXISTS `tipo_servicio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_servicio` (
-  `ts_id` int(11) NOT NULL,
+  `ts_id` int(11) NOT NULL AUTO_INCREMENT,
   `ts_descripcion` varchar(100) DEFAULT NULL,
-  `ts_estado` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ts_estado` int(11) DEFAULT '1',
+  PRIMARY KEY (`ts_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tipo_servicio`
 --
 
-INSERT INTO `tipo_servicio` (`ts_id`, `ts_descripcion`, `ts_estado`) VALUES
-(1, 'RESTAURANT', 1),
-(2, 'INTERNET WIFI', 1);
+LOCK TABLES `tipo_servicio` WRITE;
+/*!40000 ALTER TABLE `tipo_servicio` DISABLE KEYS */;
+INSERT INTO `tipo_servicio` VALUES (1,'RESTAURANT',1),(2,'INTERNET WIFI',1);
+/*!40000 ALTER TABLE `tipo_servicio` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`c_id`);
-
---
--- Indexes for table `ciudad`
---
-ALTER TABLE `ciudad`
-  ADD PRIMARY KEY (`c_id`),
-  ADD KEY `pais_fk` (`c_pais`);
-
---
--- Indexes for table `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`c_id`),
-  ADD KEY `tipocliente_fk` (`c_tipocliente`);
-
---
--- Indexes for table `consumo`
---
-ALTER TABLE `consumo`
-  ADD PRIMARY KEY (`c_id`),
-  ADD KEY `fk_cliente` (`c_cliente`),
-  ADD KEY `fk_empleado` (`c_empleado`);
-
---
--- Indexes for table `detalle_consumo`
---
-ALTER TABLE `detalle_consumo`
-  ADD PRIMARY KEY (`dc_consumo`,`dc_producto`),
-  ADD KEY `fk_producto` (`dc_producto`);
-
---
--- Indexes for table `detalle_reserva`
---
-ALTER TABLE `detalle_reserva`
-  ADD PRIMARY KEY (`dr_reserva`,`dr_habitacion`),
-  ADD KEY `fk_habitacion` (`dr_habitacion`);
-
---
--- Indexes for table `detalle_servicio`
---
-ALTER TABLE `detalle_servicio`
-  ADD PRIMARY KEY (`ds_entrada`,`ds_producto`),
-  ADD KEY `fk_producto1` (`ds_producto`);
-
---
--- Indexes for table `empleado`
---
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`e_id`),
-  ADD KEY `tipoempleado_fk1` (`e_tipoempleado`);
-
---
--- Indexes for table `enseres`
---
-ALTER TABLE `enseres`
-  ADD PRIMARY KEY (`e_id`),
-  ADD KEY `fk_habitacion1` (`e_habitacion`),
-  ADD KEY `fk_categoria1` (`e_categoria`);
-
---
--- Indexes for table `entrada`
---
-ALTER TABLE `entrada`
-  ADD PRIMARY KEY (`e_id`),
-  ADD KEY `fk_huesped` (`e_huesped`),
-  ADD KEY `fk_empleado2` (`e_empleado`),
-  ADD KEY `fk_ciudad1` (`e_ciudad`),
-  ADD KEY `fk_habitacion2` (`e_habitacion`);
-
---
--- Indexes for table `habitacion`
---
-ALTER TABLE `habitacion`
-  ADD PRIMARY KEY (`h_id`),
-  ADD KEY `tipohabitacion_fk` (`h_tipohabitacion`);
-
---
--- Indexes for table `huesped`
---
-ALTER TABLE `huesped`
-  ADD PRIMARY KEY (`h_id`),
-  ADD KEY `tipodoc_fk` (`h_tipodocumento`);
-
---
--- Indexes for table `modulos`
---
-ALTER TABLE `modulos`
-  ADD PRIMARY KEY (`m_id`);
-
---
--- Indexes for table `pais`
---
-ALTER TABLE `pais`
-  ADD PRIMARY KEY (`p_id`);
-
---
--- Indexes for table `permisos`
---
-ALTER TABLE `permisos`
-  ADD KEY `permisos_tipo_usuario` (`m_tipo_usuario`),
-  ADD KEY `permiso_modulos` (`m_id`);
-
---
--- Indexes for table `producto`
---
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`p_id`),
-  ADD KEY `categoria_fk` (`p_categoria`);
-
---
--- Indexes for table `reserva`
---
-ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`r_id`),
-  ADD KEY `fk_cliente1` (`r_cliente`);
-
---
--- Indexes for table `servicio`
---
-ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`s_id`),
-  ADD KEY `fk_entrada` (`s_entrada`);
-
---
--- Indexes for table `tipo_cliente`
---
-ALTER TABLE `tipo_cliente`
-  ADD PRIMARY KEY (`tc_id`);
-
---
--- Indexes for table `tipo_documento`
---
-ALTER TABLE `tipo_documento`
-  ADD PRIMARY KEY (`td_id`);
-
---
--- Indexes for table `tipo_empleado`
---
-ALTER TABLE `tipo_empleado`
-  ADD PRIMARY KEY (`te_id`);
-
---
--- Indexes for table `tipo_habitacion`
---
-ALTER TABLE `tipo_habitacion`
-  ADD PRIMARY KEY (`th_id`);
-
---
--- Indexes for table `tipo_servicio`
---
-ALTER TABLE `tipo_servicio`
-  ADD PRIMARY KEY (`ts_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `ciudad`
---
-ALTER TABLE `ciudad`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `consumo`
---
-ALTER TABLE `consumo`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `empleado`
---
-ALTER TABLE `empleado`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `enseres`
---
-ALTER TABLE `enseres`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `entrada`
---
-ALTER TABLE `entrada`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `habitacion`
---
-ALTER TABLE `habitacion`
-  MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `huesped`
---
-ALTER TABLE `huesped`
-  MODIFY `h_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `modulos`
---
-ALTER TABLE `modulos`
-  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `pais`
---
-ALTER TABLE `pais`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `producto`
---
-ALTER TABLE `producto`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `reserva`
---
-ALTER TABLE `reserva`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `servicio`
---
-ALTER TABLE `servicio`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tipo_cliente`
---
-ALTER TABLE `tipo_cliente`
-  MODIFY `tc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tipo_documento`
---
-ALTER TABLE `tipo_documento`
-  MODIFY `td_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tipo_empleado`
---
-ALTER TABLE `tipo_empleado`
-  MODIFY `te_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tipo_habitacion`
---
-ALTER TABLE `tipo_habitacion`
-  MODIFY `th_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tipo_servicio`
---
-ALTER TABLE `tipo_servicio`
-  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `ciudad`
---
-ALTER TABLE `ciudad`
-  ADD CONSTRAINT `pais_fk` FOREIGN KEY (`c_pais`) REFERENCES `pais` (`p_id`);
-
---
--- Constraints for table `cliente`
---
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `tipocliente_fk` FOREIGN KEY (`c_tipocliente`) REFERENCES `tipo_cliente` (`tc_id`);
-
---
--- Constraints for table `consumo`
---
-ALTER TABLE `consumo`
-  ADD CONSTRAINT `fk_cliente` FOREIGN KEY (`c_cliente`) REFERENCES `cliente` (`c_id`),
-  ADD CONSTRAINT `fk_empleado` FOREIGN KEY (`c_empleado`) REFERENCES `empleado` (`e_id`);
-
---
--- Constraints for table `detalle_consumo`
---
-ALTER TABLE `detalle_consumo`
-  ADD CONSTRAINT `fk_consumo` FOREIGN KEY (`dc_consumo`) REFERENCES `consumo` (`c_id`),
-  ADD CONSTRAINT `fk_producto` FOREIGN KEY (`dc_producto`) REFERENCES `producto` (`p_id`);
-
---
--- Constraints for table `detalle_reserva`
---
-ALTER TABLE `detalle_reserva`
-  ADD CONSTRAINT `fk_habitacion` FOREIGN KEY (`dr_habitacion`) REFERENCES `habitacion` (`h_id`),
-  ADD CONSTRAINT `fk_reserva` FOREIGN KEY (`dr_reserva`) REFERENCES `reserva` (`r_id`);
-
---
--- Constraints for table `detalle_servicio`
---
-ALTER TABLE `detalle_servicio`
-  ADD CONSTRAINT `fk_entrada1` FOREIGN KEY (`ds_entrada`) REFERENCES `entrada` (`e_id`),
-  ADD CONSTRAINT `fk_producto1` FOREIGN KEY (`ds_producto`) REFERENCES `producto` (`p_id`);
-
---
--- Constraints for table `empleado`
---
-ALTER TABLE `empleado`
-  ADD CONSTRAINT `tipoempleado_fk1` FOREIGN KEY (`e_tipoempleado`) REFERENCES `tipo_empleado` (`te_id`);
-
---
--- Constraints for table `enseres`
---
-ALTER TABLE `enseres`
-  ADD CONSTRAINT `fk_categoria1` FOREIGN KEY (`e_categoria`) REFERENCES `categoria` (`c_id`),
-  ADD CONSTRAINT `fk_habitacion1` FOREIGN KEY (`e_habitacion`) REFERENCES `habitacion` (`h_id`);
-
---
--- Constraints for table `entrada`
---
-ALTER TABLE `entrada`
-  ADD CONSTRAINT `fk_ciudad1` FOREIGN KEY (`e_ciudad`) REFERENCES `ciudad` (`c_id`),
-  ADD CONSTRAINT `fk_empleado2` FOREIGN KEY (`e_empleado`) REFERENCES `empleado` (`e_id`),
-  ADD CONSTRAINT `fk_habitacion2` FOREIGN KEY (`e_habitacion`) REFERENCES `habitacion` (`h_id`),
-  ADD CONSTRAINT `fk_huesped` FOREIGN KEY (`e_huesped`) REFERENCES `huesped` (`h_id`);
-
---
--- Constraints for table `habitacion`
---
-ALTER TABLE `habitacion`
-  ADD CONSTRAINT `tipohabitacion_fk` FOREIGN KEY (`h_tipohabitacion`) REFERENCES `tipo_habitacion` (`th_id`);
-
---
--- Constraints for table `huesped`
---
-ALTER TABLE `huesped`
-  ADD CONSTRAINT `tipodoc_fk` FOREIGN KEY (`h_tipodocumento`) REFERENCES `tipo_documento` (`td_id`);
-
---
--- Constraints for table `permisos`
---
-ALTER TABLE `permisos`
-  ADD CONSTRAINT `permiso_modulos` FOREIGN KEY (`m_id`) REFERENCES `modulos` (`m_id`),
-  ADD CONSTRAINT `permisos_tipo_usuario` FOREIGN KEY (`m_tipo_usuario`) REFERENCES `tipo_empleado` (`te_id`);
-
---
--- Constraints for table `producto`
---
-ALTER TABLE `producto`
-  ADD CONSTRAINT `categoria_fk` FOREIGN KEY (`p_categoria`) REFERENCES `categoria` (`c_id`);
-
---
--- Constraints for table `reserva`
---
-ALTER TABLE `reserva`
-  ADD CONSTRAINT `fk_cliente1` FOREIGN KEY (`r_cliente`) REFERENCES `cliente` (`c_id`);
-
---
--- Constraints for table `servicio`
---
-ALTER TABLE `servicio`
-  ADD CONSTRAINT `fk_entrada` FOREIGN KEY (`s_entrada`) REFERENCES `entrada` (`e_id`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-07-22  2:27:42
